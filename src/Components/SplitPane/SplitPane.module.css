@@ -1,0 +1,33 @@
+.splitPane {
+	display: flex;
+	flex-wrap: nowrap;
+	height: 100%;
+	width: 100%;
+}
+
+.resizer {
+	width: 1px;
+	background-color: gray;
+	cursor: col-resize;
+	position: relative;
+	z-index: 100;
+}
+
+.resizer::before {
+	--hitbox: 10px;
+	content: '';
+	position: absolute;
+	left: calc(-1 * var(--hitbox) / 2);
+	right: calc(-1 * var(--hitbox) / 2);
+	background: transparent;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100dvw;
+	height: 100dvh;
+	background: transparent;
+	z-index: 9999;
+}

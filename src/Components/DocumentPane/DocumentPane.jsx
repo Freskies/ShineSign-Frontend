@@ -1,6 +1,8 @@
 import styles from "./DocumentPane.module.css";
-import { useRef, useState } from "react";
-import { maxZoom, minZoom, zoomStep, scalingFactor } from "./documentPaneConfig.js";
+import { useEffect, useRef, useState } from "react";
+import { maxZoom, minZoom, zoomStep, scalingFactor, initialOccupiedPanePercentage } from "./documentPaneConfig.js";
+import zoomIn from "../../Assets/icons/zoomIn.svg";
+import zoomOut from "../../Assets/icons/zoomOut.svg";
 
 /**
  * A document pane component that allows zooming and panning
@@ -18,8 +20,26 @@ export default function DocumentPane ({ children }) {
 	// the initial position of the mouse
 	const startPos = useRef({ x: 0, y: 0 });
 
+	const paneRef = useRef(null);
+	const childrenRef = useRef(null);
+
+	useEffect(() => {
+		if (!(paneRef.current && childrenRef.current)) return;
+		const paneWidth = paneRef.current.offsetWidth;
+		const childrenWidth = childrenRef.current.offsetWidth;
+
+		// document scale (initialOccupiedPanePercentage of paneWidth)
+		const initialOccupiedWidth = initialOccupiedPanePercentage * paneWidth;
+		const childrenScale = initialOccupiedWidth / childrenWidth;
+
+		// document top position (same as right or left)
+		const offset = (paneWidth - initialOccupiedWidth) / 2;
+
+		setScale(Math.min(maxZoom, Math.max(minZoom, childrenScale)));
+		setPosition(prevPosition => ({ x: prevPosition.x, y: offset }));
+	}, []);
+
 	function handleWheel (e) {
-		e.preventDefault();
 		/*
 		* Math.min(maxZoom, ...) ensures that the scale does not exceed the maximum zoom level
 		* Math.max(minZoom, ...) ensures that the scale does not go below the minimum zoom level
@@ -71,20 +91,22 @@ export default function DocumentPane ({ children }) {
 		onMouseMove={handleMouseMove}
 		onMouseUp={handleMouseUp}
 		onMouseLeave={handleMouseUp}
+		ref={paneRef}
 	>
 		<div
 			className={styles.cursorGrab}
 			onMouseDown={handleMouseDown}
 			style={wrapperStyle}
+			ref={childrenRef}
 		>
 			{children}
 		</div>
 		<div className={styles.actions}>
 			<button className={styles.zoomAction} onClick={handlePlus}>
-				+
+				<img src={zoomIn} alt="zoom in"/>
 			</button>
 			<button className={styles.zoomAction} onClick={handleMinus}>
-				-
+				<img src={zoomOut} alt="zoom out"/>
 			</button>
 		</div>
 	</div>;

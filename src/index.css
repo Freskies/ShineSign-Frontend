@@ -1,5 +1,10 @@
 :root {
-	--primary-color: #ff0;
+	--primary-color: #FFE20A;
+	--seconday-color: #C36F09;
+	--tertiary-color: #A63C06;
+	--accent-color: #710000;
+	--dark-color: #1F1300;
+	--white-color: #F0F0F0;
 }
 
 
@@ -18,4 +23,6 @@ body {
 	height: 100dvh;
 	width: 100dvw;
 	overflow: hidden;
+	background-color: var(--dark-color);
+	color: var(--white-color);
 }

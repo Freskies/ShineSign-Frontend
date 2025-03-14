@@ -1,0 +1,18 @@
+.layout {
+	--nav-height: 100px;
+}
+
+.layout > nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 0;
+	height: var(--nav-height);
+}
+
+.layout > main {
+	margin-top: var(--nav-height);
+}

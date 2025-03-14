@@ -4,10 +4,10 @@ import HomeNavbar from "../HomeNavbar/HomeNavbar.jsx";
 
 export default function HomeLayout () {
 
-	return <>
+	return <div className={styles.layout}>
 		<HomeNavbar/>
 		<main>
 			<Outlet/>
 		</main>
-	</>;
+	</div>;
 };

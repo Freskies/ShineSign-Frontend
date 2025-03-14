@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
 :root {
-	--primary-color: #FFE20A;
-	--seconday-color: #C36F09;
-	--tertiary-color: #A63C06;
-	--accent-color: #710000;
-	--dark-color: #1F1300;
+	--primary-color: #FFE20A; /* https://maketintsandshades.com/#FFE20A */
+	--seconday-color: #C36F09; /* https://maketintsandshades.com/#C36F09 */
+	--tertiary-color: #A63C06; /* https://maketintsandshades.com/#A63C06 */
+	--accent-color: #710000; /* https://maketintsandshades.com/#710000 */
+	--accent-color-light: #fff;
+	--dark-color: #1F1300; /* https://maketintsandshades.com/#1F1300 */
+	--light-color: #F5F5F5;
 	--white-color: #F0F0F0;
 }
-
 
 * {
 	margin: 0;
@@ -22,7 +25,17 @@ body {
 	font-size: 1.6rem;
 	height: 100dvh;
 	width: 100dvw;
-	overflow: hidden;
-	background-color: var(--dark-color);
-	color: var(--white-color);
+	overflow-x: hidden;
+	font-family: "Fira Code", monospace;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+
+ul, ol, li {
+	list-style: none;
+}
+
+a:link, a:visited, a:hover, a:active {
+	color: inherit;
+	text-decoration: none;
 }

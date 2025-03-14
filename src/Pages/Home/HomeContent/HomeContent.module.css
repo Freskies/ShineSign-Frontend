@@ -1,0 +1,48 @@
+.homeContent {
+	display: contents;
+	position: relative;
+}
+
+.heroSection {
+	height: 100dvh;
+	padding: var(--nav-height) 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--dark-color);
+	text-align: center;
+}
+
+.heroBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100dvh;
+	z-index: -1;
+	object-fit: cover;
+	opacity: 6%;
+}
+
+.heroLogoWrapper {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 50%);
+}
+
+.heroLogo {
+	width: clamp(21rem, 50dvw, 72rem);
+}
+
+.heroLogoLight {
+	position: absolute;
+	opacity: 50%;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-100%, 0) rotate(180deg);
+	width: 50dvw;
+	height: 100dvh;
+	object-fit: cover;
+	pointer-events: none;
+}

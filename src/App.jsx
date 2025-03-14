@@ -11,8 +11,7 @@ export default function App () {
 		<Routes>
 			<Route index element={<Navigate to="home" replace/>}/>
 			<Route path="home" element={<HomeLayout/>}>
-				<Route index element={<Navigate to="details" replace/>}/>
-				<Route path="details" element={<HomeContent/>}/>
+				<Route index element={<HomeContent/>}/>
 				<Route path="login" element={<Login/>}/>
 				<Route path="register" element={<Register/>}/>
 			</Route>

@@ -1,2 +1,58 @@
-.bg {
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 4rem;
+	background: transparent;
+}
+
+.logoLink {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	height: var(--nav-height);
+
+	& p {
+		font-size: 3.2rem;
+		font-weight: 600;
+		color: var(--seconday-color);
+	}
+}
+
+.logo {
+	width: 4rem;
+	height: 4rem;
+}
+
+.loginRegisterLinks {
+	display: flex;
+	align-items: center;
+	gap: 1.4rem;
+}
+
+.registerLink:link, .registerLink:visited, .registerLink:hover, .registerLink:active {
+	text-decoration: underline;
+}
+
+.loginLink:link, .loginLink:visited, .loginLink:hover, .loginLink:active {
+	padding: 1rem 4rem;
+	border-radius: 15px;
+	background-color: var(--primary-color);
+	font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+	.navbar {
+		padding: 0 2rem;
+	}
+
+	.logoLink {
+		& p {
+			display: none;
+		}
+	}
+
+	.loginRegisterLinks {
+		gap: 1rem;
+	}
 }

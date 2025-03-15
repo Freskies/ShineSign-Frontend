@@ -12,11 +12,11 @@
 	gap: 1rem;
 	height: var(--nav-height);
 
-	& p {
-		font-size: 3.2rem;
-		font-weight: 600;
-		color: var(--seconday-color);
-	}
+	/*& p {*/
+	/*	font-size: 3.2rem;*/
+	/*	font-weight: 600;*/
+	/*	color: var(--seconday-color);*/
+	/*}*/
 }
 
 .logo {

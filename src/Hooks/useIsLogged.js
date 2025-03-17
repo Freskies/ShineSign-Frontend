@@ -9,6 +9,7 @@ export function useIsLogged (username, token) {
 	useEffect(() => {
 		async function isLoggedFetch (signal) {
 			setIsLoading(true);
+			setIsLogged(false);
 			try {
 				const res = await fetch(getIsValidTokenUrl(username),
 					{
@@ -19,8 +20,7 @@ export function useIsLogged (username, token) {
 						signal,
 					});
 				if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-				const data = await res.json();
-				console.log(data);
+				if (await res.json()) setIsLogged(true);
 			} catch (err) {
 				if (err.name === "AbortError") return;
 				setError(err.message);

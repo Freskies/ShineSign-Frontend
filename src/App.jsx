@@ -5,8 +5,6 @@ import HomeLayout from "./Pages/Home/HomeLayout/HomeLayout.jsx";
 import HomeContent from "./Pages/Home/HomeContent/HomeContent.jsx";
 import Login from "./Pages/Home/Login/Login.jsx";
 import Register from "./Pages/Home/Register/Register.jsx";
-
-import { UserProvider } from "./Contexts/UserContext.jsx";
 import AppLayout from "./Pages/App/AppLayout/AppLayout.jsx";
 
 export default function App () {
@@ -19,7 +17,7 @@ export default function App () {
 				<Route path="register" element={<Register/>}/>
 			</Route>
 			<Route path="/sign/:documentId" element={<p>HELLO</p>}/>
-			<Route path=":user" element={<AppLayout/>}>
+			<Route path=":username" element={<AppLayout/>}>
 				<Route index element={<Dashboard/>}/>
 				<Route path="edit" element={<EditPage/>}/>
 			</Route>

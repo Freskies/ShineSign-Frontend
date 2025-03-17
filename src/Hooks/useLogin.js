@@ -1,7 +1,7 @@
 import { useLocalStorage } from "./useLocalStorage.js";
 import { useState } from "react";
 import { LOGIN_URL } from "../Config/fetchConfig.js";
-import { TOKEN_KEY, USER_KEY } from "../Config/localStorageConfig.js";
+import { TOKEN_KEY } from "../Config/localStorageConfig.js";
 
 export function useLogin () {
 	const [isLoading, setIsLoading] = useState(false);
@@ -9,7 +9,6 @@ export function useLogin () {
 	const [isSuccess, setIsSuccess] = useState(false);
 
 	// TODO use cookies instead of local storage
-	const [, setUsername] = useLocalStorage(USER_KEY);
 	const [, setToken] = useLocalStorage(TOKEN_KEY);
 
 	async function login (user) {
@@ -26,7 +25,6 @@ export function useLogin () {
 			if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 			const data = await res.json();
 			setToken(data.token);
-			setUsername(user);
 			setIsSuccess(true);
 			setError(false);
 		} catch (err) {

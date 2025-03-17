@@ -11,12 +11,6 @@
 	align-items: center;
 	gap: 1rem;
 	height: var(--nav-height);
-
-	/*& p {*/
-	/*	font-size: 3.2rem;*/
-	/*	font-weight: 600;*/
-	/*	color: var(--seconday-color);*/
-	/*}*/
 }
 
 .logo {
@@ -44,12 +38,6 @@
 @media screen and (max-width: 768px) {
 	.navbar {
 		padding: 0 2rem;
-	}
-
-	.logoLink {
-		& p {
-			display: none;
-		}
 	}
 
 	.loginRegisterLinks {

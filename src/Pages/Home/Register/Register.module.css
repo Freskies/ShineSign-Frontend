@@ -1,0 +1,11 @@
+.registerPage {
+	padding-top: var(--nav-height);
+}
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}

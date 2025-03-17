@@ -6,8 +6,6 @@ export default function HomeLayout () {
 
 	return <div className={styles.layout}>
 		<HomeNavbar/>
-		<main>
-			<Outlet/>
-		</main>
+		<Outlet/>
 	</div>;
 };

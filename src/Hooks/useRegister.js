@@ -1,16 +1,15 @@
-import { useLocalStorage } from "./useLocalStorage.js";
 import { useState } from "react";
-import { LOGIN_URL } from "../Config/fetchConfig.js";
+import { REGISTER_URL } from "../Config/fetchConfig.js";
 
-export function useLogin () {
+export function useRegister () {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [isSuccess, setIsSuccess] = useState(false);
 
-	async function login (user) {
+	async function registerUser (user) {
 		setIsLoading(true);
 		try {
-			const res = await fetch(LOGIN_URL,
+			const res = await fetch(REGISTER_URL,
 				{
 					method: "POST",
 					headers: {

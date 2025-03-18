@@ -10,11 +10,9 @@ export function UserProvider ({ children }) {
 	const { username } = useParams();
 	const [token] = useLocalStorage(TOKEN_KEY);
 
-	console.log(username);
-
 	const { isLoading, error, isLogged } = useIsLogged(username, token);
 
-	return <UserContext.Provider value={null}>
+	return <UserContext.Provider value={{ token }}>
 		{isLoading && <p>Loading...</p>}
 		{error && <p>There was an error</p>}
 		{isLogged
@@ -26,6 +24,6 @@ export function UserProvider ({ children }) {
 
 export function useUser () {
 	const context = useContext(UserContext);
-	if (!context) throw new Error("useLogin must be used within a LoginProvider");
+	if (!context) throw new Error("useUser must be used within a UserProvider");
 	return context;
 }

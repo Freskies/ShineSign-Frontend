@@ -6,9 +6,10 @@ import styles from "./SplitPane.module.css";
  *
  * @param leftPane the jsx element to be displayed on the left
  * @param rightPane the jsx element to be displayed on the right
+ * @param className the css class name to be applied to the split pane
  * @returns {JSX.Element} the split pane
  */
-export default function SplitPane ({ leftPane, rightPane }) {
+export default function SplitPane ({ leftPane, rightPane, className }) {
 	const [leftWidth, setLeftWidth] = useState(50); // Initial width in %
 	const [isResizing, setIsResizing] = useState(false);
 	const minWidth = 20; // Minimum width in %
@@ -45,7 +46,7 @@ export default function SplitPane ({ leftPane, rightPane }) {
 		window.addEventListener("mouseup", onMouseUp);
 	}
 
-	return <div className={styles.splitPane}>
+	return <div className={`${styles.splitPane} ${className}`}>
 		{/* Left Panel */}
 		<div style={{ width: `${leftWidth}%` }}>
 			{leftPane}

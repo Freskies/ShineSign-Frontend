@@ -1,11 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import EditPage from "./Pages/App/Edit/EditPage.jsx";
 import Dashboard from "./Pages/App/Dashboard/Dashboard.jsx";
 import HomeLayout from "./Pages/Home/HomeLayout/HomeLayout.jsx";
 import HomeContent from "./Pages/Home/HomeContent/HomeContent.jsx";
 import Login from "./Pages/Home/Login/Login.jsx";
 import Register from "./Pages/Home/Register/Register.jsx";
-import AppLayout from "./Pages/App/AppLayout/AppLayout.jsx";
+import AppLayout from "./Pages/App/AppLayout.jsx";
+import EditorLayout from "./Pages/App/EditorLayout.jsx";
 
 export default function App () {
 	return <BrowserRouter>
@@ -19,7 +19,7 @@ export default function App () {
 			<Route path="/sign/:documentId" element={<p>HELLO</p>}/>
 			<Route path=":username" element={<AppLayout/>}>
 				<Route index element={<Dashboard/>}/>
-				<Route path="edit" element={<EditPage/>}/>
+				<Route path=":documentId" element={<EditorLayout/>}/>
 			</Route>
 			<Route path="*" element={<Navigate to="/home" replace/>}/>
 		</Routes>

@@ -1,8 +1,12 @@
 import styles from "./Editor.module.css";
 import { emmetCSS, emmetHTML } from "emmet-monaco-es";
 import { Editor as MonacoEditor } from "@monaco-editor/react";
+import { useDocument } from "../../Contexts/DocumentContext.jsx";
 
-export default function Editor ({ value, onChange }) {
+export default function Editor () {
+	const { currentPage, handleChangeBody } = useDocument();
+	const value = currentPage?.body;
+
 	function handleEditorMount () {
 		emmetHTML(window.monaco);
 		emmetCSS(window.monaco);
@@ -13,7 +17,7 @@ export default function Editor ({ value, onChange }) {
 		defaultLanguage="html"
 		defaultValue="<!-- Write your code here -->"
 		value={value}
-		onChange={onChange}
+		onChange={handleChangeBody}
 		theme="light"
 		options={{
 			quickSuggestions: true,

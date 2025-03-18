@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Tab, TabList, TabPanel, TabPanelList } from "./TabbedPane.jsx";
 
 const TabContext = createContext(null);
@@ -11,6 +11,10 @@ export function TabProvider ({ content, children }) {
 	const tabPanelList = content.find(child => child.type === TabPanelList);
 	const tabPanels = tabPanelList.props.children.filter(child => child.type === TabPanel);
 	const currentPanel = tabPanels.find(child => child.props.tabId === activeTab);
+
+	useEffect(() => {
+		handleTabClick(tabs?.[0]?.props?.id)
+	}, []);
 
 	function handleTabClick (id) {
 		setActiveTab(id);

@@ -19,10 +19,17 @@ export function DocumentProvider ({ children }) {
 	} = useFetchDocument(documentId);
 
 	useEffect(() => {
-		if (!modifiedDocument) fetchDocument().then(setModifiedDocument)
+		if (!modifiedDocument) fetchDocument().then(setModifiedDocument);
 	}, [modifiedDocument]);
 
-	const currentPage = modifiedDocument?.pages.find(page => page.isFirst);
+	function navigatePages (page, pageNumber) {
+		if (!page) return null;
+		if (pageNumber === 0) return page;
+		return navigatePages(page.nextPage, pageNumber - 1);
+	}
+
+	const firstPage = modifiedDocument?.pages.find(page => page.isFirst);
+	const currentPage = navigatePages(firstPage, currentPageNumber - 1);
 
 	function handleChange (newDocument) {
 		setModifiedDocument(newDocument);
@@ -55,15 +62,23 @@ export function DocumentProvider ({ children }) {
 	}
 
 	function hasNextPage () {
-		return modifiedDocument.pages.find(
-			page => page.pageNumber === currentPageNumber + 1,
-		);
+		return currentPage.nextPage !== null;
 	}
 
 	function hasPreviousPage () {
-		return modifiedDocument.pages.find(
-			page => page.pageNumber === currentPageNumber - 1,
-		);
+		return modifiedDocument.pages.find(page => page.nextPage === currentPage.id);
+	}
+
+	function nextPage () {
+		setCurrentPageNumber(prevCurrentPageNumber => prevCurrentPageNumber + 1);
+	}
+
+	function previousPage () {
+		setCurrentPageNumber(prevCurrentPageNumber => prevCurrentPageNumber - 1);
+	}
+
+	function newPage () {
+		
 	}
 
 	const value = {
@@ -81,6 +96,10 @@ export function DocumentProvider ({ children }) {
 		// pages
 		currentPage,
 		currentPageNumber,
+		hasNextPage,
+		hasPreviousPage,
+		nextPage,
+		previousPage,
 	};
 
 	return <DocumentContext.Provider value={value}>

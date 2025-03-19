@@ -2,12 +2,28 @@ import styles from "./DocumentPageController.module.css";
 import { useDocument } from "../../Contexts/DocumentContext.jsx";
 
 export default function DocumentPageController () {
-	const { currentPageNumber, nextPage, previousPage } = useDocument();
+	const {
+		currentPageNumber,
+		nextPage,
+		previousPage,
+		hasNextPage,
+		hasPreviousPage,
+	} = useDocument();
 
 	return <div className={styles.controller}>
-		<button onClick={previousPage} className={styles.controlButton}><ArrowLeft/></button>
+		<button
+			onClick={previousPage}
+			className={styles.controlButton}
+			disabled={hasPreviousPage()}
+		>
+			<ArrowLeft/>
+		</button>
 		<p>{currentPageNumber}</p>
-		<button onClick={nextPage} className={styles.controlButton}><ArrowRight/></button>
+		{
+			hasNextPage()
+				? <button onClick={nextPage} className={styles.controlButton}><ArrowRight/></button>
+				: <button className={styles.controlButton} disabled><ArrowRight/></button>
+		}
 	</div>;
 };
 

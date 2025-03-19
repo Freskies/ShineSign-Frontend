@@ -1,0 +1,35 @@
+.tabs {
+	--tabs-height: 4.8rem;
+	--tabs-border: 2px solid #ccc;
+	display: flex;
+	align-items: center;
+}
+
+.tabs li {
+	height: var(--tabs-height);
+	align-content: center;
+}
+
+.tabs :global(.clickableTab) {
+	padding: 0 2rem;
+	border-bottom: var(--tabs-border);
+	border-right: var(--tabs-border);
+}
+
+.tabPanel {
+	height: 100%;
+	width: 100%;
+}
+
+.nonPageTabs {
+	border-bottom: var(--tabs-border);
+	height: var(--tabs-height);
+	width: 100%;
+	display: flex;
+	padding: 0 2.4rem;
+	justify-content: space-between;
+}
+
+.tabs :global(.activeTab) {
+	border-bottom: none;
+}

@@ -1,3 +1,5 @@
 .editor {
+	--editor-pad-top: 1rem;
+	padding-top: var(--editor-pad-top);
 	height: 100dvh;
 }

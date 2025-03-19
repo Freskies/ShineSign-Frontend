@@ -2,13 +2,19 @@ import styles from "./TabbedPane.module.css";
 import { TabProvider, useTab } from "./TabContext.jsx";
 
 export function TabList ({ children, className = "" }) {
-	const { tabs } = useTab();
-	return <ul className={className}>{tabs}</ul>;
+	const { tabListContent } = useTab();
+	return <ul className={className}>{tabListContent}</ul>;
 }
 
-export function Tab ({ children, id, className = "" }) {
-	const { onTabClick } = useTab();
-	return <li id={id} className={className} onClick={() => onTabClick(id)}>{children}</li>;
+export function Tab ({ children, id = null, className = "" }) {
+	const { onTabClick, isActiveTab } = useTab();
+	return <li
+		id={id}
+		className={`${isActiveTab(id) ? "activeTab" : ""} ${className} ${id ? "clickableTab" : ""}`}
+		onClick={() => id && onTabClick(id)}
+	>
+		{children}
+	</li>;
 }
 
 export function TabPanelList ({ children }) {
@@ -29,7 +35,7 @@ function TabbedPaneContent ({ className }) {
 				{tabList}
 			</nav>
 		</header>
-		<main>
+		<main className={styles.mainContent}>
 			{currentPanel}
 		</main>
 	</section>;

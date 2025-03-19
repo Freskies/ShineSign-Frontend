@@ -1,9 +1,7 @@
-import { createContext, useContext, useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useLocalStorage } from "../Hooks/useLocalStorage.js";
 import { useUser } from "./UserContext.jsx";
-import { getDocument } from "../EditorConfig/editorHelper.js";
-import { usePages } from "../Hooks/usePages.js";
 import { useFetchDocument } from "../Hooks/useFetchDocument.js";
 
 const DocumentContext = createContext(null);
@@ -12,7 +10,7 @@ export function DocumentProvider ({ children }) {
 	const { token } = useUser();
 	const { documentId } = useParams();
 	const [modifiedDocument, setModifiedDocument] = useLocalStorage(documentId);
-	const { currentPage: currentPageNumber, nextPage, previousPage } = usePages();
+	const [currentPageNumber, setCurrentPageNumber] = useState(1);
 	const pageRef = useRef(null);
 	const {
 		isLoading: isLoadingFetchDocument,
@@ -21,10 +19,10 @@ export function DocumentProvider ({ children }) {
 	} = useFetchDocument(documentId);
 
 	useEffect(() => {
-		if (!modifiedDocument) fetchDocument().then(setModifiedDocument);
+		if (!modifiedDocument) fetchDocument().then(setModifiedDocument)
 	}, [modifiedDocument]);
 
-	const currentPage = modifiedDocument?.pages.find(page => page.pageNumber === currentPageNumber);
+	const currentPage = modifiedDocument?.pages.find(page => page.isFirst);
 
 	function handleChange (newDocument) {
 		setModifiedDocument(newDocument);
@@ -39,11 +37,33 @@ export function DocumentProvider ({ children }) {
 			...prevModifiedDocument,
 			pages: prevModifiedDocument.pages.map(page =>
 				page.pageNumber === currentPage.pageNumber
-					? { ...page, body: text, }
-					: page
+					? { ...page, body: text }
+					: page,
 			),
 		}));
-		pageRef.current.srcdoc = getDocument(text);
+	}
+
+	function handleChangeStyle (text) {
+		setModifiedDocument(prevModifiedDocument => ({
+			...prevModifiedDocument,
+			pages: prevModifiedDocument.pages.map(page =>
+				page.pageNumber === currentPage.pageNumber
+					? { ...page, style: text }
+					: page,
+			),
+		}));
+	}
+
+	function hasNextPage () {
+		return modifiedDocument.pages.find(
+			page => page.pageNumber === currentPageNumber + 1,
+		);
+	}
+
+	function hasPreviousPage () {
+		return modifiedDocument.pages.find(
+			page => page.pageNumber === currentPageNumber - 1,
+		);
 	}
 
 	const value = {
@@ -56,11 +76,11 @@ export function DocumentProvider ({ children }) {
 		// actions
 		handleChange,
 		handleChangeBody,
+		handleChangeStyle,
 		handleSave,
 		// pages
 		currentPage,
-		nextPage,
-		previousPage,
+		currentPageNumber,
 	};
 
 	return <DocumentContext.Provider value={value}>

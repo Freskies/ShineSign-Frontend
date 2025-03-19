@@ -1,3 +1,13 @@
 .tabbedPane {
+	display: flex;
+	flex-direction: column;
+}
 
+.mainContent {
+	height: 100%;
+	width: 100%;
+}
+
+:global(.clickableTab) {
+	cursor: pointer;
 }

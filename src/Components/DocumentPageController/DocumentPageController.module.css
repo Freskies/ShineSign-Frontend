@@ -1,0 +1,29 @@
+.controller {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.2rem 2rem;
+	border-radius: 1.6rem;
+	background-color: var(--light-color);
+}
+
+.controller p {
+	font-size: 2.2rem;
+}
+
+.controlButton {
+	border: none;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	padding: 0.3rem;
+	border-radius: 50%;
+	background-color: var(--ligh-color-shade);
+	margin: 0 0.8rem;
+}
+
+.arrow {
+	width: 1.2rem;
+	height: 1.2rem;
+	fill: var(--dark-color);
+}

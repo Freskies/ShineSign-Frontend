@@ -1,5 +1,4 @@
 import styles from "./Logo.module.css";
-import pen from "./../../Assets/icons/pen.svg";
 
 export default function Logo () {
 	return <div className={styles.logo}>

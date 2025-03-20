@@ -1,6 +1,6 @@
 import styles from "./Register.module.css";
 import { useState } from "react";
-import { useRegister } from "../../../Hooks/useRegister.js";
+import { useRegister } from "../../../Hooks/requests/useRegister.js";
 
 export default function Register () {
 	const { isLoading, error, isSuccess, registerUser } = useRegister();

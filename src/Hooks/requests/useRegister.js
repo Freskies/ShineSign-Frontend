@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { REGISTER_URL } from "../Config/fetchConfig.js";
+import { REGISTER_URL } from "../../Config/fetchConfig.js";
 
 export function useRegister () {
 	const [isLoading, setIsLoading] = useState(false);

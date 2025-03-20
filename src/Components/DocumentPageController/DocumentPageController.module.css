@@ -1,3 +1,7 @@
+.container {
+	display: flex;
+}
+
 .controller {
 	display: flex;
 	align-items: center;
@@ -7,8 +11,9 @@
 	background-color: var(--light-color);
 }
 
-.controller p {
+.pageNumber {
 	font-size: 2.2rem;
+	cursor: default;
 }
 
 .controlButton {
@@ -31,5 +36,20 @@
 .add {
 	width: 1.55rem;
 	height: 1.55rem;
+	fill: var(--dark-color);
+}
+
+.deleteContainer {
+	border: none;
+	background: none;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	padding: 0.3rem;
+}
+
+.delete {
+	width: 2.8rem;
+	height: 2.8rem;
 	fill: var(--dark-color);
 }

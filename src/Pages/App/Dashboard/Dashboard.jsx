@@ -1,7 +1,7 @@
 import styles from "./Dashboard.module.css";
-import { useDocuments } from "../../../Hooks/useDocuments.js";
+import { useDocuments } from "../../../Hooks/requests/useDocuments.js";
 import { useUser } from "../../../Contexts/UserContext.jsx";
-import { useCreateDocument } from "../../../Hooks/useCreateDocument.js";
+import { useCreateDocument } from "../../../Hooks/requests/useCreateDocument.js";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard () {

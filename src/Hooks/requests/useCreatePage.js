@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createPageUrl } from "../Config/fetchConfig.js";
+import { createPageUrl } from "../../Config/fetchConfig.js";
 
 export function useCreatePage (token) {
 	const [isLoading, setIsLoading] = useState(false);

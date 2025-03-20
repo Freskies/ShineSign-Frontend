@@ -1,7 +1,7 @@
-import { useLocalStorage } from "./useLocalStorage.js";
+import { useLocalStorage } from "../useLocalStorage.js";
 import { useState } from "react";
-import { LOGIN_URL } from "../Config/fetchConfig.js";
-import { TOKEN_KEY } from "../Config/localStorageConfig.js";
+import { LOGIN_URL } from "../../Config/fetchConfig.js";
+import { TOKEN_KEY } from "../../Config/localStorageConfig.js";
 
 export function useLogin () {
 	const [isLoading, setIsLoading] = useState(false);

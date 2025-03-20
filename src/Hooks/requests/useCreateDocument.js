@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CREATE_DOCUMENT_URL } from "../Config/fetchConfig.js";
+import { CREATE_DOCUMENT_URL } from "../../Config/fetchConfig.js";
 
 export function useCreateDocument (token) {
 	const [isLoading, setIsLoading] = useState(false);

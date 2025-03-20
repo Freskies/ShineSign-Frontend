@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getDocumentUrl } from "../Config/fetchConfig.js";
-import { useUser } from "../Contexts/UserContext.jsx";
+import { getDocumentUrl } from "../../Config/fetchConfig.js";
+import { useUser } from "../../Contexts/UserContext.jsx";
 
 export function useFetchDocument (documentId) {
 	const [isLoading, setIsLoading] = useState(false);

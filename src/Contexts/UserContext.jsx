@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { useIsLogged } from "../Hooks/useIsLogged.js";
+import { useIsLogged } from "../Hooks/requests/useIsLogged.js";
 import { useLocalStorage } from "../Hooks/useLocalStorage.js";
 import { TOKEN_KEY } from "../Config/localStorageConfig.js";
 import { useParams } from "react-router-dom";

@@ -4,12 +4,16 @@ export function useLocalDocument (documentId) {
 	const [localDocument, setLocalDocument] = useLocalStorage(documentId);
 	const pages = localDocument?.pages;
 
-	const numberOfPages = pages.length;
-	const firstPage = pages.find(page => page.isFirst);
-	const lastPage = pages.find(page => page.nextPage === null);
+	const numberOfPages = pages?.length;
+	const firstPage = pages?.find(page => page.isFirst);
+	const lastPage = pages?.find(page => page.nextPage === null);
 
 	function getNextPage (prevPage) {
 		return pages.find(page => prevPage.nextPage === page.id);
+	}
+
+	function getPreviousPage (nextPage) {
+		return pages.find(page => page.nextPage === nextPage.id);
 	}
 
 	function getPageTailed (firstPage, pageNumber) {
@@ -18,8 +22,18 @@ export function useLocalDocument (documentId) {
 		return getPageTailed(getNextPage(firstPage), pageNumber - 1);
 	}
 
-	function getPage (pageNumber) {
+	function getPageById (pageId) {
+		return pages.find(page => page.id === pageId);
+	}
+
+	function getPageByNumber (pageNumber) {
 		return getPageTailed(firstPage, pageNumber);
+	}
+
+	function getPage (pageIdOrNumber) {
+		return Number.isFinite(pageIdOrNumber)
+			? getPageByNumber(pageIdOrNumber)
+			: getPageById(pageIdOrNumber);
 	}
 
 	function hasNextPage (page) {
@@ -28,6 +42,10 @@ export function useLocalDocument (documentId) {
 
 	function hasPreviousPage (page) {
 		return page?.id !== firstPage?.id;
+	}
+
+	function isDeletable (page) {
+		return !(page?.isFirst) || page.nextPage !== null;
 	}
 
 	function setBody (pageId, text) {
@@ -50,6 +68,50 @@ export function useLocalDocument (documentId) {
 					: page,
 			),
 		}));
+	}
+
+	function clearPage (page) {
+		return {
+			...page,
+			body: "",
+			style: "",
+		};
+	}
+
+	function _deletePage (pageToDelete) {
+		if (!isDeletable(pageToDelete)) {
+			setLocalDocument(prevLocalDocument => ({
+				...prevLocalDocument,
+				pages: prevLocalDocument.pages.map(page =>
+					page.id === pageToDelete.id
+						? clearPage(page)
+						: page,
+				),
+			}));
+			return;
+		}
+
+		const prevPageId = getPreviousPage(pageToDelete)?.id;
+		const nextPageId = getNextPage(pageToDelete)?.id;
+		const isFirst = pageToDelete.isFirst;
+
+		setLocalDocument(prevLocalDocument => ({
+			...prevLocalDocument,
+			pages: prevLocalDocument.pages.reduce((acc, page) => {
+				if (page.id === prevPageId) return [...acc, { ...page, nextPage: nextPageId ?? null }];
+				if (page.id === pageToDelete.id) return acc;
+				if (isFirst && page.id === nextPageId) return [...acc, { ...page, isFirst: true }];
+				return [...acc, page];
+			}, []),
+		}));
+	}
+
+	function deletePage (pageIdOrNumber) {
+		_deletePage(
+			Number.isFinite(pageIdOrNumber)
+				? getPageByNumber(pageIdOrNumber)
+				: getPageById(pageIdOrNumber),
+		);
 	}
 
 	function handleAddPage (newPage) {
@@ -76,5 +138,6 @@ export function useLocalDocument (documentId) {
 		setStyle,
 		setLocalDocument,
 		handleAddPage,
+		deletePage,
 	};
 }

@@ -8,6 +8,7 @@ import { useDocument } from "../../../Contexts/DocumentContext.jsx";
 import EditorHtml from "../../../Components/TextEditor/EditorHTML.jsx";
 import EditorCSS from "../../../Components/TextEditor/EditorCSS.jsx";
 import DocumentPageController from "../../../Components/DocumentPageController/DocumentPageController.jsx";
+import DocumentController from "../../../Components/DocumentController/DocumentController.jsx";
 
 export default function EditPage () {
 	const { currentPage, handleChangeBody, handleChangeStyle } = useDocument();
@@ -23,11 +24,7 @@ export default function EditPage () {
 						<Tab id="tab_style">Style</Tab>
 						<div className={tabbedPaneComponentStyles.nonPageTabs}>
 							<Tab><DocumentPageController/></Tab>
-							<div style={{ display: "flex" }}>
-								<Tab><p>Save</p></Tab>
-								<Tab><p>Exit</p></Tab>
-							</div>
-							<Tab><p>Settings</p></Tab>
+							<Tab><DocumentController/></Tab>
 						</div>
 					</TabList>
 					<TabPanelList>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getIsValidTokenUrl } from "../Config/fetchConfig.js";
+import { getIsValidTokenUrl } from "../../Config/fetchConfig.js";
 
 export function useIsLogged (username, token) {
 	const [isLoading, setIsLoading] = useState(false);

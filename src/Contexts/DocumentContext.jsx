@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useUser } from "./UserContext.jsx";
-import { useFetchDocument } from "../Hooks/useFetchDocument.js";
+import { useFetchDocument } from "../Hooks/requests/useFetchDocument.js";
 import { useCounter } from "../Hooks/useCounter.js";
 import { useLocalDocument } from "../Hooks/useLocalDocument.js";
-import { useCreatePage } from "../Hooks/useCreatePage.js";
+import { useCreatePage } from "../Hooks/requests/useCreatePage.js";
+import { useSaveDocument } from "../Hooks/requests/useSaveDocument.js";
 
 const DocumentContext = createContext(null);
 
@@ -26,6 +27,11 @@ export function DocumentProvider ({ children }) {
 	} = useCreatePage(token);
 
 	const {
+		// isLoading: isLoadingSaveDocument,
+		saveDocument,
+	} = useSaveDocument(token);
+
+	const {
 		localDocument,
 		getPage,
 		hasNextPage: hasNextPageGeneric,
@@ -34,6 +40,7 @@ export function DocumentProvider ({ children }) {
 		setStyle,
 		setLocalDocument,
 		handleAddPage: onAddPage,
+		deletePage: onDeletePage,
 	} = useLocalDocument(documentId);
 
 	const {
@@ -73,6 +80,20 @@ export function DocumentProvider ({ children }) {
 		handleNextPage();
 	}
 
+	function handleDeletePage () {
+		if (hasPreviousPage()) handlePreviousPage();
+		onDeletePage(currentPage.id);
+	}
+
+	async function handleSaveDocument () {
+		try {
+			await saveDocument(localDocument);
+			setLocalDocument(null);
+		} catch (error) {
+			console.error("Failed to save document", error);
+		}
+	}
+
 	const value = {
 		pageRef,
 		documentId,
@@ -85,6 +106,8 @@ export function DocumentProvider ({ children }) {
 		handleChangeBody,
 		handleChangeStyle,
 		addNewPage,
+		handleDeletePage,
+		handleSaveDocument,
 	};
 
 	return <DocumentContext.Provider value={value}>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ALL_DOCUMENTS_URL } from "../Config/fetchConfig.js";
+import { ALL_DOCUMENTS_URL } from "../../Config/fetchConfig.js";
 
 export function useDocuments (token) {
 	const [isLoading, setIsLoading] = useState(false);

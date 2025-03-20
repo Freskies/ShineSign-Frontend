@@ -1,0 +1,29 @@
+.documentController {
+	display: flex;
+	gap: 0.8rem;
+}
+
+.documentControl {
+	display: grid;
+	place-content: center;
+	border: none;
+	background: none;
+}
+
+.settings {
+	width: 2.8rem;
+	height: 2.8rem;
+	fill: var(--dark-color);
+}
+
+.save {
+	width: 2.8rem;
+	height: 2.8rem;
+	fill: var(--dark-color);
+}
+
+.exit {
+	width: 2.8rem;
+	height: 2.8rem;
+	fill: var(--dark-color);
+}

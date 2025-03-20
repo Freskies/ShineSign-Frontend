@@ -12,4 +12,5 @@ export const ALL_DOCUMENTS_URL = `${DASHBOARD_URL}/documents`;
 export const EDITOR_URL = `${BASE_URL}/editor/document`;
 export const CREATE_DOCUMENT_URL = `${EDITOR_URL}`;
 export const getDocumentUrl = documentId => `${EDITOR_URL}/${documentId}`;
+export const createPageUrl = documentId => `${EDITOR_URL}/${documentId}/newPage`;
 export const modifyDocumentUrl = documentId => `${EDITOR_URL}/${documentId}`;

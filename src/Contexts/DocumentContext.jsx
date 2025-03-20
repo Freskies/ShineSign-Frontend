@@ -1,105 +1,90 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useLocalStorage } from "../Hooks/useLocalStorage.js";
 import { useUser } from "./UserContext.jsx";
 import { useFetchDocument } from "../Hooks/useFetchDocument.js";
+import { useCounter } from "../Hooks/useCounter.js";
+import { useLocalDocument } from "../Hooks/useLocalDocument.js";
+import { useCreatePage } from "../Hooks/useCreatePage.js";
 
 const DocumentContext = createContext(null);
 
 export function DocumentProvider ({ children }) {
 	const { token } = useUser();
 	const { documentId } = useParams();
-	const [modifiedDocument, setModifiedDocument] = useLocalStorage(documentId);
-	const [currentPageNumber, setCurrentPageNumber] = useState(1);
 	const pageRef = useRef(null);
+
 	const {
-		isLoading: isLoadingFetchDocument,
-		error: errorFetchDocument,
+		// isLoading: isLoadingFetchDocument,
+		// error: errorFetchDocument,
 		fetchDocument,
 	} = useFetchDocument(documentId);
 
+	const {
+		// isLoading: isLoadingCreatePage,
+		// error: errorCreatePage,
+		createPage,
+	} = useCreatePage(token);
+
+	const {
+		localDocument,
+		getPage,
+		hasNextPage: hasNextPageGeneric,
+		hasPreviousPage: hasPreviousPageGeneric,
+		setBody,
+		setStyle,
+		setLocalDocument,
+		handleAddPage: onAddPage,
+	} = useLocalDocument(documentId);
+
+	const {
+		count: currentPageNumber,
+		increment: handleNextPage,
+		decrement: handlePreviousPage,
+	} = useCounter(1);
+
+	const currentPage = getPage(currentPageNumber - 1);
+
+	///////// DEBUGGING /////////
+	// console.log("DocumentProvider", { localDocument, currentPageNumber, currentPage });
+
 	useEffect(() => {
-		if (!modifiedDocument) fetchDocument().then(setModifiedDocument);
-	}, [modifiedDocument]);
-
-	function navigatePages (page, pageNumber) {
-		if (!page) return null;
-		if (pageNumber === 0) return page;
-		return navigatePages(page.nextPage, pageNumber - 1);
-	}
-
-	const firstPage = modifiedDocument?.pages.find(page => page.isFirst);
-	const currentPage = navigatePages(firstPage, currentPageNumber - 1);
-
-	function handleChange (newDocument) {
-		setModifiedDocument(newDocument);
-	}
-
-	function handleSave () {
-
-	}
-
-	function handleChangeBody (text) {
-		setModifiedDocument(prevModifiedDocument => ({
-			...prevModifiedDocument,
-			pages: prevModifiedDocument.pages.map(page =>
-				page.pageNumber === currentPage.pageNumber
-					? { ...page, body: text }
-					: page,
-			),
-		}));
-	}
-
-	function handleChangeStyle (text) {
-		setModifiedDocument(prevModifiedDocument => ({
-			...prevModifiedDocument,
-			pages: prevModifiedDocument.pages.map(page =>
-				page.pageNumber === currentPage.pageNumber
-					? { ...page, style: text }
-					: page,
-			),
-		}));
-	}
+		if (!localDocument) fetchDocument().then(setLocalDocument);
+	}, [localDocument]);
 
 	function hasNextPage () {
-		return currentPage.nextPage !== null;
+		return hasNextPageGeneric(currentPage);
 	}
 
 	function hasPreviousPage () {
-		return modifiedDocument.pages.find(page => page.nextPage === currentPage.id);
+		return hasPreviousPageGeneric(currentPage);
 	}
 
-	function nextPage () {
-		setCurrentPageNumber(prevCurrentPageNumber => prevCurrentPageNumber + 1);
+	function handleChangeBody (text) {
+		setBody(currentPage.id, text);
 	}
 
-	function previousPage () {
-		setCurrentPageNumber(prevCurrentPageNumber => prevCurrentPageNumber - 1);
+	function handleChangeStyle (text) {
+		setStyle(currentPage.id, text);
 	}
 
-	function newPage () {
-		
+	async function addNewPage () {
+		const newPage = await createPage(documentId);
+		onAddPage(newPage);
+		handleNextPage();
 	}
 
 	const value = {
 		pageRef,
 		documentId,
-		modifiedDocument,
-		// states
-		isLoadingFetchDocument,
-		errorFetchDocument,
-		// actions
-		handleChange,
-		handleChangeBody,
-		handleChangeStyle,
-		handleSave,
-		// pages
-		currentPage,
 		currentPageNumber,
 		hasNextPage,
 		hasPreviousPage,
-		nextPage,
-		previousPage,
+		handleNextPage,
+		handlePreviousPage,
+		currentPage,
+		handleChangeBody,
+		handleChangeStyle,
+		addNewPage,
 	};
 
 	return <DocumentContext.Provider value={value}>

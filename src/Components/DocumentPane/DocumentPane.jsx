@@ -1,5 +1,5 @@
 import styles from "./DocumentPane.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { maxZoom, minZoom, zoomStep, scalingFactor, initialOccupiedPanePercentage } from "./documentPaneConfig.js";
 import zoomIn from "../../Assets/icons/zoomIn.svg";
 import zoomOut from "../../Assets/icons/zoomOut.svg";
@@ -23,7 +23,7 @@ export default function DocumentPane ({ children }) {
 	const paneRef = useRef(null);
 	const childrenRef = useRef(null);
 
-	useEffect(() => {
+	const onLoad = useCallback(() => {
 		if (!(paneRef.current && childrenRef.current)) return;
 		const paneWidth = paneRef.current.offsetWidth;
 		const childrenWidth = childrenRef.current.offsetWidth;
@@ -38,6 +38,8 @@ export default function DocumentPane ({ children }) {
 		setScale(Math.min(maxZoom, Math.max(minZoom, childrenScale)));
 		setPosition(prevPosition => ({ x: prevPosition.x, y: offset }));
 	}, []);
+
+	useEffect(onLoad, [onLoad]);
 
 	function handleWheel (e) {
 		/*
@@ -98,6 +100,7 @@ export default function DocumentPane ({ children }) {
 			onMouseDown={handleMouseDown}
 			style={wrapperStyle}
 			ref={childrenRef}
+			onLoad={onLoad}
 		>
 			{children}
 		</div>

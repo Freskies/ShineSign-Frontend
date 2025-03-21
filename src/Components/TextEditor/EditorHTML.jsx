@@ -1,6 +1,8 @@
 import { Editor as MonacoEditor } from "@monaco-editor/react";
 import styles from "./Editor.module.css";
-import { handleEditorMount } from "./editorHelper.js";
+import { configureMonaco, handleEditorMount } from "./editorHelper.js";
+
+configureMonaco();
 
 export default function EditorHtml ({ value, onChange }) {
 	return <MonacoEditor

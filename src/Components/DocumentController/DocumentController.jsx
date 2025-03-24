@@ -1,7 +1,9 @@
 import styles from "./DocumentController.module.css";
 import { useDocument } from "../../Contexts/DocumentContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function DocumentController () {
+	const navigate = useNavigate();
 	const { handleSaveDocument: onSaveDocument } = useDocument();
 
 	return <div className={styles.documentController}>
@@ -11,7 +13,7 @@ export default function DocumentController () {
 		<DocumentControl title="Save" onClick={onSaveDocument}>
 			<Save/>
 		</DocumentControl>
-		<DocumentControl title="Exit">
+		<DocumentControl title="Exit" onClick={() => navigate("..")}>
 			<Exit/>
 		</DocumentControl>
 	</div>;

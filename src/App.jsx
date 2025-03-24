@@ -6,6 +6,8 @@ import Login from "./Pages/Home/Login/Login.jsx";
 import Register from "./Pages/Home/Register/Register.jsx";
 import AppLayout from "./Pages/App/AppLayout.jsx";
 import EditorLayout from "./Pages/App/EditorLayout.jsx";
+import FillOutPage from "./Pages/FillOut/FillOutPage.jsx";
+import FillOutLayout from "./Pages/FillOut/FillOutLayout.jsx";
 
 export default function App () {
 	return <BrowserRouter>
@@ -16,7 +18,9 @@ export default function App () {
 				<Route path="login" element={<Login/>}/>
 				<Route path="register" element={<Register/>}/>
 			</Route>
-			<Route path="/sign/:documentId" element={<p>HELLO</p>}/>
+			<Route path="/sign/:documentId" element={<FillOutLayout/>}>
+				<Route index element={<FillOutPage/>}/>
+			</Route>
 			<Route path=":username" element={<AppLayout/>}>
 				<Route index element={<Dashboard/>}/>
 				<Route path=":documentId" element={<EditorLayout/>}/>

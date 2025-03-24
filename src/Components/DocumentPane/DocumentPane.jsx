@@ -8,9 +8,10 @@ import zoomOut from "../../Assets/icons/zoomOut.svg";
  * A document pane component that allows zooming and panning
  *
  * @param children the jsx elements to be displayed in the document pane
+ * @param scroll whether the document pane should be scrollable
  * @returns {JSX.Element} the document pane
  */
-export default function DocumentPane ({ children }) {
+export default function DocumentPane ({ children, scroll = false }) {
 	// the scale of the document pane
 	const [scale, setScale] = useState(1);
 	// the position of the document pane
@@ -28,11 +29,16 @@ export default function DocumentPane ({ children }) {
 		const paneWidth = paneRef.current.offsetWidth;
 		const childrenWidth = childrenRef.current.offsetWidth;
 
+		if (paneWidth > childrenWidth) {
+			setPosition(prevPosition => ({ x: prevPosition.x, y: 0 }));
+			return;
+		}
+
 		// document scale (initialOccupiedPanePercentage of paneWidth)
 		const initialOccupiedWidth = initialOccupiedPanePercentage * paneWidth;
 		const childrenScale = initialOccupiedWidth / childrenWidth;
 
-		// document top position (same as right or left)
+		// document top position (and bottom padding)
 		const offset = (paneWidth - initialOccupiedWidth) / 2;
 
 		setScale(Math.min(maxZoom, Math.max(minZoom, childrenScale)));
@@ -88,15 +94,15 @@ export default function DocumentPane ({ children }) {
 	};
 
 	return <div
-		className={styles.documentPane}
-		onWheel={handleWheel}
+		className={`${styles.documentPane} ${scroll ? styles.scrollable : ""}`}
+		onWheel={scroll ? () => null : handleWheel}
 		onMouseMove={handleMouseMove}
 		onMouseUp={handleMouseUp}
 		onMouseLeave={handleMouseUp}
 		ref={paneRef}
 	>
 		<div
-			className={styles.cursorGrab}
+			className={`${styles.cursorGrab} ${scroll ? styles.scrollableWrapper : ""}`}
 			onMouseDown={handleMouseDown}
 			style={wrapperStyle}
 			ref={childrenRef}

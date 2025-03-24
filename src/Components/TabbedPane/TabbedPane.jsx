@@ -31,7 +31,7 @@ function TabbedPaneContent ({ className }) {
 
 	return <section className={`${styles.tabbedPane} ${className}`}>
 		<header>
-			<nav>
+			<nav className={styles.tabs}>
 				{tabList}
 			</nav>
 		</header>

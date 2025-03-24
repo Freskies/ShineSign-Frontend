@@ -14,7 +14,7 @@
 }
 
 .resizer::before {
-	--hitbox: 10px;
+	--hitbox: 20px;
 	content: '';
 	position: absolute;
 	left: calc(-1 * var(--hitbox) / 2);

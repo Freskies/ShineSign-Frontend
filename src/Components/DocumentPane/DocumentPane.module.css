@@ -1,15 +1,24 @@
 .documentPane {
 	position: relative;
 	width: 100%;
-	height: min(100%, 100dvh);
+	height: 100%;
 	overflow: hidden;
 	background-color: #f0f0f0;
 	display: flex;
 	justify-content: center;
 }
 
+.documentPane.scrollable {
+	overflow: auto;
+}
+
+.scrollableWrapper {
+	padding: 7.2rem 0;
+}
+
 .cursorGrab {
 	cursor: grab;
+	height: fit-content;
 }
 
 .cursorGrab * {
@@ -22,7 +31,7 @@
 }
 
 .actions {
-	position: absolute;
+	position: fixed;
 	right: 0;
 	bottom: 0;
 	display: flex;

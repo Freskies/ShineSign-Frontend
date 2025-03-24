@@ -1,0 +1,26 @@
+.page {
+	width: 21cm;
+	height: 29.7cm;
+	padding: var(--doc-margin);
+	overflow: hidden;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	font-size: 1.8rem;
+}
+
+.ss_field {
+	color: var(--ss-accent-color);
+	font-weight: 900;
+	font-size: 120%;
+}
+
+.ss_signBox {
+	height: 4cm;
+	width: 8cm;
+}
+
+.ss_signBox.ss_signBox_fixed {
+	position: absolute;
+	bottom: var(--doc-margin);
+	right: var(--doc-margin);
+}

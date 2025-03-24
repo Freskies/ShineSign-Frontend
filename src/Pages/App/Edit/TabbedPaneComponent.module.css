@@ -28,8 +28,13 @@
 	display: flex;
 	padding: 0 2.4rem;
 	justify-content: space-between;
+	gap: 1.8rem;
 }
 
 .tabs :global(.activeTab) {
 	border-bottom: none;
+}
+
+.tabView:global(.activeTab) {
+	background-color: #f0f0f0;
 }

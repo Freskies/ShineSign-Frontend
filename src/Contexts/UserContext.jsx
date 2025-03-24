@@ -12,7 +12,7 @@ export function UserProvider ({ children }) {
 
 	const { isLoading, error, isLogged } = useIsLogged(username, token);
 
-	return <UserContext.Provider value={{ token }}>
+	return <UserContext.Provider value={{ token, username }}>
 		{isLoading && <p>Loading...</p>}
 		{error && <p>There was an error</p>}
 		{isLogged

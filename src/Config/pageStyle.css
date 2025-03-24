@@ -3,6 +3,7 @@
 	--doc-margin: 3cm;
 }
 
+/* Reset for iframe
 * {
 	margin: 0;
 	padding: 0;
@@ -20,6 +21,7 @@ body {
 	overflow: hidden;
 	font-size: 1.8rem;
 }
+*/
 
 .document {
 	width: 21cm;

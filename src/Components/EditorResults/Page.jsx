@@ -1,5 +1,5 @@
 import styles from "./Page.module.css";
-import { getDocument } from "../../EditorConfig/editorHelper.js";
+import { getDocument } from "../../Config/pageHelper.js";
 import { useDocument } from "../../Contexts/DocumentContext.jsx";
 import { useEffect } from "react";
 

@@ -1,0 +1,5 @@
+.ss_field,
+.ss_signBox {
+	pointer-events: auto;
+	cursor: pointer;
+}

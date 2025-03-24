@@ -1,8 +1,8 @@
-import minifiedStylePDF from "./minifiedStylePDF.js";
+import minifiedPageStyle from "./minifiedPageStyle.js";
 
 export function getDocument (content = "", style = "") {
 	return `<html>
-			<head><style>${minifiedStylePDF}${style}</style></head>
+			<head><style>${minifiedPageStyle}${style}</style></head>
 			<body><div class="document">${parseContent(content)}</div></body>
 		</html>`;
 }

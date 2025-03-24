@@ -1,7 +1,7 @@
 import styles from "./FillOutDocumentPage.module.css";
 import "./../../Config/pageStyle.css";
 import "./../../Config/fillOutStyle.css";
-import { useParser } from "../../Hooks/ShineSignParser/useParser.jsx";
+import { useParser } from "../../ShineSignParser/useParser.jsx";
 
 /*
 <text style="title">TITLE</text>

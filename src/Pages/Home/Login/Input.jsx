@@ -1,13 +1,15 @@
-import styles from "./Input.module.css";
-
-export default function Input ({ children, type, value, onChange, placeholder }) {
-	return <div className="inputWrapper">
-		{children}
-		<input
-			type={type}
-			value={value}
-			onChange={onChange}
-			placeholder={placeholder}
-		/>
+export default function Input ({ icon, type, value, onChange, placeholder, isValid, children, rightIcon }) {
+	return <div className="inputContainer">
+		<div className="inputWrapper">
+			{icon}
+			<input
+				type={type}
+				value={value}
+				onChange={onChange}
+				placeholder={placeholder}
+			/>
+			{rightIcon}
+		</div>
+		{!isValid && value && children}
 	</div>;
 };

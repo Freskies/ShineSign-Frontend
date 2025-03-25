@@ -5,8 +5,5 @@
 
 .error {
 	color: red;
-}
-
-.success {
-	color: green;
+	padding-bottom: 0.8rem;
 }

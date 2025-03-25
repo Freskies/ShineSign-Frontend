@@ -1,7 +1,7 @@
 import styles from "./Logo.module.css";
 
-export default function Logo () {
-	return <div className={styles.logo}>
+export default function Logo ({ className }) {
+	return <div className={`${styles.logo} ${className}`}>
 		<div className={styles.sun}>
 			<p className={styles.sunText}>ShineSign</p>
 		</div>

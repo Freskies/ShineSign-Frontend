@@ -1,0 +1,38 @@
+.spinner {
+	display: inline-block;
+	width: 5rem;
+	aspect-ratio: 1;
+	border: 3px solid #c3c3c3;
+	border-radius: 50%;
+	border-top-color: transparent;
+	animation: spin 1s linear infinite;
+}
+
+.fullScreen {
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	width: 20rem;
+	z-index: 999;
+}
+
+.bounce1 {
+	animation-delay: -0.45s;
+}
+
+.bounce2 {
+	animation-delay: -0.3s;
+}
+
+.bounce3 {
+	animation-delay: -0.15s;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

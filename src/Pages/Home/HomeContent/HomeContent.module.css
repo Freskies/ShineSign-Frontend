@@ -11,6 +11,18 @@
 	align-items: center;
 	color: var(--dark-color);
 	text-align: center;
+	position: relative;
+	background-color: #f9f9f9;
+}
+
+.heroDocument {
+	height: 80%;
+	width: 80%;
+	padding: 3cm;
+	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+	position: absolute;
+	bottom: 0;
+	background-color: #fff;
 }
 
 .tagline {

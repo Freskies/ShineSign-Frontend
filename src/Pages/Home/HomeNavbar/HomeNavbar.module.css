@@ -4,6 +4,7 @@
 	align-items: center;
 	padding: 0 4rem;
 	background: transparent;
+	z-index: 1;
 }
 
 .logoLink {
@@ -11,11 +12,6 @@
 	align-items: center;
 	gap: 1rem;
 	height: var(--nav-height);
-}
-
-.logo {
-	width: 4rem;
-	height: 4rem;
 }
 
 .loginRegisterLinks {
@@ -44,3 +40,42 @@
 		gap: 1rem;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.logo {
+		transform: scale(0.8);
+	}
+
+	.loginRegisterLinks {
+		gap: 1rem;
+	}
+
+	.loginLink:link, .loginLink:visited, .loginLink:hover, .loginLink:active {
+		padding: 1rem 2rem;
+	}
+}
+
+@media screen and (max-width: 420px) {
+	.logo {
+		transform: scale(0.7);
+	}
+
+	.disappear {
+		display: none !important;
+	}
+
+	.loginRegisterLinks {
+		gap: 0.8rem;
+	}
+
+	.loginLink:link, .loginLink:visited, .loginLink:hover, .loginLink:active {
+		padding: 0.8rem 1.6rem;
+	}
+}
+
+@media screen and (max-width: 300px) {
+	.logo {
+		transform: scale(0.6);
+	}
+}
+

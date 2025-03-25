@@ -1,3 +1,9 @@
 .loginPage {
-	padding-top: var(--nav-height);
+	display: grid;
+	place-content: center;
+}
+
+.error {
+	color: red;
+	padding-bottom: 0.8rem;
 }

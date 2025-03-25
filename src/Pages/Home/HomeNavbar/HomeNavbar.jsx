@@ -1,17 +1,40 @@
 import styles from "./HomeNavbar.module.css";
-import logo from "./../../../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../Components/Logo/Logo.jsx";
 
 export default function HomeNavbar () {
+	const location = useLocation();
+	const isHomePage = location.pathname === "/home";
+	const isRegisterPage = location.pathname === "/home/register";
+	const isLoginPage = location.pathname === "/home/login";
+
 	return <nav className={styles.navbar}>
 		<Link to="/" className={styles.logoLink}>
-			{/*<img className={styles.logo} src={logo} alt="ShineSign Logo"/>*/}
-			{/*<p>ShineSign</p>*/}<Logo/>
+			<Logo className={styles.logo}/>
 		</Link>
 		<ul className={styles.loginRegisterLinks}>
-			<Link to="register" className={styles.registerLink}>register</Link>
-			<Link to="login" className={styles.loginLink}>login</Link>
+			{isHomePage && homeView()}
+			{isRegisterPage && registerView()}
+			{isLoginPage && loginView()}
 		</ul>
 	</nav>;
 };
+
+function homeView () {
+	return <>
+		<Link to="register" className={`${styles.registerLink} ${styles.disappear}`}>register</Link>
+		<Link to="login" className={styles.loginLink}>login</Link>
+	</>;
+}
+
+function loginView () {
+	return <>
+		<Link to="register" className={styles.registerLink}>register</Link>
+	</>;
+}
+
+function registerView () {
+	return <>
+		<Link to="login" className={styles.registerLink}>login</Link>
+	</>;
+}

@@ -2,7 +2,6 @@ import styles from "./FillOutPage.module.css";
 import DocumentPane from "../../Components/DocumentPane/DocumentPane.jsx";
 import { useFillOut } from "../../Contexts/FillOutContext.jsx";
 import FillOutDocument from "../../Components/FillOutDocument/FillOutDocument.jsx";
-import { useParser } from "../../ShineSignParser/useParser.jsx";
 
 export default function FillOutPage () {
 	const { isLoading, error, isSuccess } = useFillOut();

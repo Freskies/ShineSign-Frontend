@@ -1,7 +1,5 @@
 import styles from "./FillOutDocumentPage.module.css";
-import "./../../Config/pageStyle.css";
-import "./../../Config/fillOutStyle.css";
-import { useParser } from "../../ShineSignParser/useParser.jsx";
+import { useSSPContext } from "../../ShineSignParser/SSPContext.jsx";
 
 /*
 <text style="title">TITLE</text>
@@ -17,9 +15,9 @@ title {
 * */
 
 export default function FillOutDocumentPage ({ page }) {
-	const a = useParser(page.body, page.style);
+	const { parsePage } = useSSPContext();
 
 	return <li className={styles.page}>
-		{page.body}
+		{parsePage(page.body, page.style)}
 	</li>;
 };

@@ -15,14 +15,14 @@ export default class FiberNode {
 
 	static generateFiberTree (elements, styles) {
 		// XML
-		const xml = new XMLParser().parseFromString(`<root>${elements}</root>`);
+		const xml = new XMLParser().parseFromString(`<root style="root">${elements}</root>`);
 		const fiberPropertiesXML = xmlToFiberProperties(xml);
 		// Styles
 		const styleList = getStyleList(styles);
 		const stylesObj = getRulesObject(styleList);
 
-		return FiberNode.#nodeFromArray(
-			fiberPropertiesXML.children,
+		return FiberNode.#nodeFromObject(
+			fiberPropertiesXML,
 			tags => getRulesByTagList(tags, stylesObj),
 		);
 	}
@@ -37,18 +37,6 @@ export default class FiberNode {
 		node.child = FiberNode.#nodeFromObject(children[0], getStyles);
 		let current = node.child;
 		for (const child of children.slice(1)) {
-			current.sibling = FiberNode.#nodeFromObject(child, getStyles);
-			current = current.sibling;
-		}
-		return node;
-	}
-
-	static #nodeFromArray (arr, getStyles) {
-		const node = new FiberNode({ type: "root" });
-		if (!arr || arr.length === 0) return node;
-		node.child = FiberNode.#nodeFromObject(arr[0], getStyles);
-		let current = node.child;
-		for (const child of arr.slice(1)) {
 			current.sibling = FiberNode.#nodeFromObject(child, getStyles);
 			current = current.sibling;
 		}

@@ -1,13 +1,18 @@
 import { createContext, useContext } from "react";
-import FiberNode from "./FiberTree.js";
-import * as ShineSignPageFactory from "./ShineSignPageFactory.jsx";
+import FiberNode from "../ShineSignParser/FiberTree.js";
+import * as ShineSignPageFactory from "../ShineSignParser/ShineSignPageFactory.jsx";
 
 const SSPContext = createContext(null);
 
 export function SSPProvider ({ children }) {
 	function parsePage (elements, styles) {
-		const fiberTree = FiberNode.generateFiberTree(elements, styles);
-		return ShineSignPageFactory.fromFiberTree(fiberTree);
+		try {
+			const fiberTree = FiberNode.generateFiberTree(elements, styles);
+			return ShineSignPageFactory.fromFiberTree(fiberTree);
+		} catch (error) {
+			console.error(error);
+			return null;
+		}
 	}
 
 	const value = {

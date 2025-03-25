@@ -1,5 +1,5 @@
 import styles from "./FillOutDocumentPage.module.css";
-import { useSSPContext } from "../../ShineSignParser/SSPContext.jsx";
+import { useSSPContext } from "../../Contexts/SSPContext.jsx";
 
 /*
 <text style="title">TITLE</text>

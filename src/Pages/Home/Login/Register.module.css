@@ -1,5 +1,6 @@
 .registerPage {
-	padding-top: var(--nav-height);
+	display: grid;
+	place-content: center;
 }
 
 .error {

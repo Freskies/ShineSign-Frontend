@@ -2,7 +2,6 @@ import styles from "./EditPage.module.css";
 import tabbedPaneComponentStyles from "./TabbedPaneComponent.module.css";
 import SplitPane, { LeftPanel, RightPanel } from "../../../Components/SplitPane/SplitPane.jsx";
 import DocumentPane from "../../../Components/DocumentPane/DocumentPane.jsx";
-import Page from "../../../Components/EditorResults/Page.jsx";
 import TabbedPane, { Tab, TabList, TabPanel, TabPanelList } from "../../../Components/TabbedPane/TabbedPane.jsx";
 import { useDocument } from "../../../Contexts/DocumentContext.jsx";
 import EditorHtml from "../../../Components/TextEditor/EditorHTML.jsx";
@@ -10,9 +9,13 @@ import EditorCSS from "../../../Components/TextEditor/EditorCSS.jsx";
 import DocumentPageController from "../../../Components/DocumentPageController/DocumentPageController.jsx";
 import DocumentController from "../../../Components/DocumentController/DocumentController.jsx";
 import { useEffect, useState } from "react";
+import ResultPage from "../../../Components/ResultPage/ResultPage.jsx";
+import { SSPProvider } from "../../../Contexts/SSPContext.jsx";
+
+const TABLET_WIDTH = 976;
 
 function isFullscreen () {
-	return window.innerWidth < 800;
+	return window.innerWidth < TABLET_WIDTH;
 }
 
 export default function EditPage () {
@@ -57,7 +60,9 @@ function SplitView () {
 		</LeftPanel>
 		<RightPanel>
 			<DocumentPane>
-				<Page/>
+				<SSPProvider>
+					<ResultPage className={styles.resultPage} pageBody={currentPageBody} pageStyle={currentPageStyle}/>
+				</SSPProvider>
 			</DocumentPane>
 		</RightPanel>
 	</SplitPane>;
@@ -87,7 +92,9 @@ function FullscreenView () {
 			</TabPanel>
 			<TabPanel className={tabbedPaneComponentStyles.tabPanel} tabId="tab_view">
 				<DocumentPane>
-					<Page/>
+					<SSPProvider>
+						<ResultPage className={styles.resultPage} pageBody={currentPageBody} pageStyle={currentPageStyle}/>
+					</SSPProvider>
 				</DocumentPane>
 			</TabPanel>
 		</TabPanelList>

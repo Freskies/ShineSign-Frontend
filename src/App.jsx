@@ -3,7 +3,7 @@ import Dashboard from "./Pages/App/Dashboard/Dashboard.jsx";
 import HomeLayout from "./Pages/Home/HomeLayout/HomeLayout.jsx";
 import HomeContent from "./Pages/Home/HomeContent/HomeContent.jsx";
 import Login from "./Pages/Home/Login/Login.jsx";
-import Register from "./Pages/Home/Register/Register.jsx";
+import Register from "./Pages/Home/Login/Register.jsx";
 import AppLayout from "./Pages/App/AppLayout.jsx";
 import EditorLayout from "./Pages/App/EditorLayout.jsx";
 import FillOutPage from "./Pages/FillOut/FillOutPage.jsx";

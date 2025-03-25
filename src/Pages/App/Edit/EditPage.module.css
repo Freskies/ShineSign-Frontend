@@ -3,3 +3,8 @@
 	width: 100dvw;
 	overflow: hidden;
 }
+
+.resultPage * {
+	pointer-events: none !important;
+	cursor: unset !important;
+}

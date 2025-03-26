@@ -4,7 +4,7 @@ import { ALL_DOCUMENTS_URL } from "../../Config/fetchConfig.js";
 export function useDocuments (token) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [documents, setDocuments] = useState([]);
+	const [ssDocuments, setSsDocuments] = useState([]);
 
 	useEffect(() => {
 		async function fetchDocuments (signal) {
@@ -20,7 +20,7 @@ export function useDocuments (token) {
 				});
 				const data = await response.json();
 				if (!response.ok) throw new Error(data.message || "Failed to fetch documents.");
-				setDocuments(data.documents);
+				setSsDocuments(data.documents);
 			} catch (error) {
 				setError(error.message);
 			} finally {
@@ -33,5 +33,5 @@ export function useDocuments (token) {
 		return () => controller.abort();
 	}, [token]);
 
-	return { isLoading, error, documents };
+	return { isLoading, error, ssDocuments };
 }

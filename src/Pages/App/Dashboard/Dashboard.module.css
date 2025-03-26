@@ -1,0 +1,76 @@
+.dashboard {
+	position: relative;
+}
+
+/* SIDE ACTIONS */
+
+.sideActions {
+	position: absolute;
+	top: 0.6rem;
+	right: 1.2rem;
+}
+
+.account {}
+
+.logout {
+	cursor: pointer;
+	border: none;
+	background: none;
+	padding: 1rem;
+	overflow: hidden;
+	display: grid;
+	place-content: center;
+	border-radius: 50%;
+}
+
+.logout:hover {
+	background-color: var(--light-color);
+}
+
+/* HEADER */
+
+.header {
+	display: flex;
+	align-items: center;
+	padding: 1.6rem 2.4rem;
+	gap: 2.4rem;
+}
+
+.title {
+	font-size: 3.8rem;
+}
+
+.add {
+	cursor: pointer;
+	border: none;
+	padding: 1rem;
+	overflow: hidden;
+	display: grid;
+	place-content: center;
+	border-radius: 50%;
+	background-color: var(--light-color);
+}
+
+.add:hover {
+	background-color: var(--light-color-shade);
+}
+
+/* MAIN */
+
+.main {
+	padding: 1.6rem 2.4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 7.2rem;
+}
+
+.documentSection {}
+
+.fieldset {
+	& legend {
+		margin-left: 2rem;
+		padding: 0 0.8rem;
+	}
+}
+
+.sectionTitle {}

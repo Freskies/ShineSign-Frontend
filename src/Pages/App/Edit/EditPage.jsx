@@ -11,6 +11,7 @@ import DocumentController from "../../../Components/DocumentController/DocumentC
 import { useEffect, useState } from "react";
 import ResultPage from "../../../Components/ResultPage/ResultPage.jsx";
 import { SSPProvider } from "../../../Contexts/SSPContext.jsx";
+import SendImage from "../../../Components/SendImage/SendImage.jsx";
 
 const TABLET_WIDTH = 976;
 
@@ -46,6 +47,7 @@ function SplitView () {
 					<div className={tabbedPaneComponentStyles.nonPageTabs}>
 						<Tab><DocumentPageController/></Tab>
 						<Tab><DocumentController/></Tab>
+						{/*<Tab><SendImage/></Tab>*/}
 					</div>
 				</TabList>
 				<TabPanelList>

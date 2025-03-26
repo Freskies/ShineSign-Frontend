@@ -1,0 +1,16 @@
+.logout {
+	height: 3.2rem;
+	aspect-ratio: 1;
+	fill: var(--dark-color);
+}
+
+.add {
+	height: 3.8rem;
+	aspect-ratio: 1;
+	fill: var(--dark-color);
+}
+
+.document {
+	height: 12rem;
+	fill: var(--dark-color);
+}

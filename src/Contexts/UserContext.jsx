@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import { useIsLogged } from "../Hooks/requests/useIsLogged.js";
 import { useLocalStorage } from "../Hooks/useLocalStorage.js";
 import { TOKEN_KEY } from "../Config/localStorageConfig.js";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const UserContext = createContext(null);
 
@@ -12,12 +12,18 @@ export function UserProvider ({ children }) {
 
 	const { isLoading, error, isLogged } = useIsLogged(username, token);
 
-	return <UserContext.Provider value={{ token, username }}>
+	function logout () {
+		localStorage.removeItem(TOKEN_KEY);
+	}
+
+	const value = { token, username, logout };
+
+	return <UserContext.Provider value={value}>
 		{isLoading && <p>Loading...</p>}
 		{error && <p>There was an error</p>}
 		{isLogged
 			? children
-			: <p>Not logged in</p>
+			: <p>Not logged in, return to <Link to={"/home"}>Home</Link></p>
 		}
 	</UserContext.Provider>;
 }

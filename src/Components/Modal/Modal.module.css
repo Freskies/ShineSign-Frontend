@@ -1,0 +1,52 @@
+.modal {
+	border: none;
+	border-radius: 8px;
+	padding: 2rem;
+	background: #fff;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	animation: openModal 0.3s;
+	width: clamp(26rem, 50%, 80rem);
+}
+
+.modal::backdrop {
+	background: rgba(0, 0, 0, 0.5);
+	animation: openModalBackdrop 0.3s;
+}
+
+.content {
+	position: relative;
+}
+
+.closeButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+@keyframes openModal {
+	from {
+		opacity: 0;
+		transform: scale(0.4);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes openModalBackdrop {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+

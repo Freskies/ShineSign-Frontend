@@ -14,5 +14,8 @@ export const CREATE_DOCUMENT_URL = `${EDITOR_URL}`;
 export const getDocumentUrl = documentId => `${EDITOR_URL}/${documentId}`;
 export const createPageUrl = documentId => `${EDITOR_URL}/${documentId}/newPage`;
 export const modifyDocumentUrl = documentId => `${EDITOR_URL}/${documentId}`;
+export const uploadImageUrl = documentId => `${EDITOR_URL}/${documentId}/newImage`;
+export const deleteImageUrl = (documentId, imageId) => `${EDITOR_URL}/${documentId}/deleteImage/${imageId}`;
+export const getAllImages = documentId => `${EDITOR_URL}/${documentId}/allImages`;
 
 export const fillOutUrl = documentId => `${BASE_URL}/fillOut/${documentId}`;

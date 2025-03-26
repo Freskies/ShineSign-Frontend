@@ -9,7 +9,6 @@ export default function HomeContent () {
 					Sign Smarter with <em>ShineSign</em>
 				</h1>
 			</div>
-
 		</section>
 	</div>;
 };

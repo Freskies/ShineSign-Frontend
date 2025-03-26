@@ -33,7 +33,9 @@ export default function Login () {
 		{isLoading
 			? <Spinner fullscreen={true}/>
 			: <>
-				{error ? <p className={styles.error}>{error}</p> : null}
+				{error ? <p className={styles.error}>
+					{error.includes("403") ? "Invalid username or password!" : error}
+				</p> : null}
 				<form className={formStyles.form} onSubmit={handleSubmit}>
 					<Input
 						type="text"

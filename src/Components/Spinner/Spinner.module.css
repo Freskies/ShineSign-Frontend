@@ -16,18 +16,6 @@
 	z-index: 999;
 }
 
-.bounce1 {
-	animation-delay: -0.45s;
-}
-
-.bounce2 {
-	animation-delay: -0.3s;
-}
-
-.bounce3 {
-	animation-delay: -0.15s;
-}
-
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);

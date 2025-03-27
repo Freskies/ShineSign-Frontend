@@ -2,12 +2,17 @@ import styles from "./DocumentController.module.css";
 import { useDocument } from "../../Contexts/DocumentContext.jsx";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal.jsx";
-import { useModal } from "../../Hooks/useModal.js";
+import { useBinarySwitch } from "../../Hooks/useBinarySwitch.js";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 
 export default function DocumentController () {
 	const navigate = useNavigate();
-	const { handleSaveDocument: onSaveDocument } = useDocument();
-	const { isOpen: isOpenModal, open: openModal, close: closeModal } = useModal();
+	const { isOn: isOpenModal, setOn: openModal, setOff: closeModal } = useBinarySwitch();
+	const {
+		handleSaveDocument: onSaveDocument,
+		isPublic,
+		setVisibility,
+	} = useDocument();
 
 	return <div className={styles.documentController}>
 		<DocumentControl title="Settings" onClick={openModal}>
@@ -21,7 +26,10 @@ export default function DocumentController () {
 		</DocumentControl>
 		<Modal isOpen={isOpenModal} onClose={closeModal}>
 			<h2>Settings</h2>
-			<p>Settings content</p>
+			<label className={styles.property}>
+				<span>Visibility:</span>
+				<ToggleSwitch isOn={isPublic} onToggle={() => setVisibility(!isPublic)}/>
+			</label>
 		</Modal>
 	</div>;
 };

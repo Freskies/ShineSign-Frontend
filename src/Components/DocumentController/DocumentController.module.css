@@ -33,3 +33,10 @@
 	height: 2.8rem;
 	fill: var(--dark-color);
 }
+
+.property {
+	margin-top: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+}

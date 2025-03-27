@@ -1,0 +1,39 @@
+.toggleContainer {
+	display: inline-block;
+	cursor: pointer;
+}
+
+.switch {
+	width: 50px;
+	height: 25px;
+	border-radius: 15px;
+	position: relative;
+	transition: background 0.3s ease;
+}
+
+.switch.on {
+	background: var(--primary-color);
+}
+
+.switch.off {
+	background: #ccc;
+}
+
+.circle {
+	width: 19px;
+	height: 19px;
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: transform 0.3s ease;
+}
+
+.switch.on .circle {
+	transform: translate(25px, -50%);
+}
+
+.switch.off .circle {
+	transform: translate(5px, -50%);
+}

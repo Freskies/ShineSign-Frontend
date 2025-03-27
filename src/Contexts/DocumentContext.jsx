@@ -41,6 +41,8 @@ export function DocumentProvider ({ children }) {
 		setLocalDocument,
 		handleAddPage: onAddPage,
 		deletePage: onDeletePage,
+		isPublic,
+		setVisibility,
 	} = useLocalDocument(documentId);
 
 	const {
@@ -97,6 +99,7 @@ export function DocumentProvider ({ children }) {
 	const value = {
 		pageRef,
 		documentId,
+		isPublic,
 		currentPageNumber,
 		hasNextPage,
 		hasPreviousPage,
@@ -108,6 +111,7 @@ export function DocumentProvider ({ children }) {
 		addNewPage,
 		handleDeletePage,
 		handleSaveDocument,
+		setVisibility,
 	};
 
 	return <DocumentContext.Provider value={value}>

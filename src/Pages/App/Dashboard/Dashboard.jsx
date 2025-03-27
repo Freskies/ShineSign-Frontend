@@ -8,7 +8,7 @@ import { IconAdd, IconLogout } from "./DashboardIcons.jsx";
 import Modal from "../../../Components/Modal/Modal.jsx";
 import { useRef, useState } from "react";
 import SsDocumentList from "../../../Components/SSDocuments/SSDocumentList.jsx";
-import { useModal } from "../../../Hooks/useModal.js";
+import { useBinarySwitch } from "../../../Hooks/useBinarySwitch.js";
 
 export default function Dashboard () {
 	const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function Dashboard () {
 	} = useCreateDocument(token);
 
 	const inputRef = useRef(null);
-	const { isOpen: isOpenModal, open: openModal, close: closeModal } = useModal();
+	const { isOn: isOpenModal, setOn: openModal, setOff: closeModal } = useBinarySwitch();
 
 	function handleOpenModal () {
 		openModal();

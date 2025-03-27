@@ -2,6 +2,7 @@ import { useLocalStorage } from "./useLocalStorage.js";
 
 export function useLocalDocument (documentId) {
 	const [localDocument, setLocalDocument] = useLocalStorage(documentId);
+	const isPublic = localDocument?.isPublic;
 	const pages = localDocument?.pages;
 
 	const numberOfPages = pages?.length;
@@ -46,6 +47,13 @@ export function useLocalDocument (documentId) {
 
 	function isDeletable (page) {
 		return !(page?.isFirst) || page.nextPage !== null;
+	}
+
+	function setVisibility (isPublic) {
+		setLocalDocument(prevLocalDocument => ({
+			...prevLocalDocument,
+			isPublic,
+		}));
 	}
 
 	function setBody (pageId, text) {
@@ -128,12 +136,14 @@ export function useLocalDocument (documentId) {
 
 	return {
 		localDocument,
+		isPublic,
 		numberOfPages,
 		firstPage,
 		lastPage,
 		getPage,
 		hasNextPage,
 		hasPreviousPage,
+		setVisibility,
 		setBody,
 		setStyle,
 		setLocalDocument,

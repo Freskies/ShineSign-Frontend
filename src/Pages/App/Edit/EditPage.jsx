@@ -47,7 +47,6 @@ function SplitView () {
 					<div className={tabbedPaneComponentStyles.nonPageTabs}>
 						<Tab><DocumentPageController/></Tab>
 						<Tab><DocumentController/></Tab>
-						{/*<Tab><SendImage/></Tab>*/}
 					</div>
 				</TabList>
 				<TabPanelList>

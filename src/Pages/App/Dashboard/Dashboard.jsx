@@ -60,14 +60,14 @@ export default function Dashboard () {
 	return <div className={styles.dashboard}>
 		<aside className={styles.sideActions}>
 			{/*<Link to={"/me"} className={styles.account}>fdf</Link>*/}
-			<button className={styles.logout} onClick={handleLogout}>
+			<button className={styles.logout} onClick={handleLogout} title="logout">
 				<IconLogout/>
 			</button>
 		</aside>
 		<div>
 			<header className={styles.header}>
 				<h1 className={styles.title}>My Documents</h1>
-				<button className={styles.add} onClick={openModal}>
+				<button className={styles.add} onClick={openModal} title="create new document">
 					<IconAdd/>
 				</button>
 			</header>
@@ -79,14 +79,14 @@ export default function Dashboard () {
 							<fieldset className={styles.fieldset}>
 								<legend><h2 className={styles.sectionTitle}>Public Documents</h2></legend>
 								<SsDocumentList documentList={publicDocuments} onClick={handleDocumentClick}/>
-								{publicDocuments.length === 0 && <p>No public documents</p>}
+								{/*{publicDocuments.length === 0 && <p>No public documents</p>}*/}
 							</fieldset>
 						</section>
 						<section className={styles.documentSection}>
 							<fieldset className={styles.fieldset}>
 								<legend><h2 className={styles.sectionTitle}>Private Documents</h2></legend>
 								<SsDocumentList documentList={privateDocuments} onClick={handleDocumentClick}/>
-								{privateDocuments.length === 0 && <p>No private documents</p>}
+								{/*{privateDocuments.length === 0 && <p>No private documents</p>}*/}
 							</fieldset>
 						</section>
 					</>

@@ -1,12 +1,26 @@
 import styles from "./SSDocument.module.css";
-import { IconDocument } from "../../Pages/App/Dashboard/DashboardIcons.jsx";
+import { IconDocument, IconEdit } from "../../Pages/App/Dashboard/DashboardIcons.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function SsDocument ({ ssDocument, onClick }) {
-	return <li>
-		<figure>
-			<button onClick={() => onClick(ssDocument.id)}>G</button>
+	const navigate = useNavigate();
+
+	function handleEditClick (e) {
+		e.stopPropagation();
+		onClick(ssDocument.id);
+	}
+
+	function handleDocumentClick () {
+		navigate("signed/" + ssDocument.id);
+	}
+
+	return <li onClick={handleDocumentClick} title={ssDocument.title}>
+		<figure className={styles.documentCard}>
+			<button className={styles.modify} onClick={handleEditClick} title="edit document">
+				<IconEdit/>
+			</button>
 			<IconDocument/>
-			<figcaption>{ssDocument.title}</figcaption>
+			<figcaption className={styles.title}>{ssDocument.title}</figcaption>
 		</figure>
 	</li>;
 };

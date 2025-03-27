@@ -14,3 +14,9 @@
 	height: 12rem;
 	fill: var(--dark-color);
 }
+
+.edit {
+	height: 2.4rem;
+	aspect-ratio: 1;
+	fill: var(--dark-color);
+}

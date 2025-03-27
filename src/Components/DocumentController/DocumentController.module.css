@@ -1,6 +1,5 @@
 .documentController {
 	display: flex;
-	gap: 0.8rem;
 }
 
 .documentControl {
@@ -8,6 +7,13 @@
 	place-content: center;
 	border: none;
 	background: none;
+	cursor: pointer;
+	border-radius: 50%;
+	padding: 0.4rem;
+}
+
+.documentControl:hover {
+	background-color: var(--light-color);
 }
 
 .settings {

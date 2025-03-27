@@ -8,6 +8,8 @@ import AppLayout from "./Pages/App/AppLayout.jsx";
 import EditorLayout from "./Pages/App/EditorLayout.jsx";
 import FillOutPage from "./Pages/FillOut/FillOutPage.jsx";
 import FillOutLayout from "./Pages/FillOut/FillOutLayout.jsx";
+import SignedPageLayout from "./Pages/App/SignedPageLayout.jsx";
+import SignedPage from "./Pages/App/SignedPage/SignedPage.jsx";
 
 export default function App () {
 	return <BrowserRouter>
@@ -24,6 +26,10 @@ export default function App () {
 			<Route path=":username" element={<AppLayout/>}>
 				<Route index element={<Dashboard/>}/>
 				<Route path=":documentId" element={<EditorLayout/>}/>
+				<Route path="signed" element={<SignedPageLayout/>}>
+					<Route index element={<Navigate to=".." replace/>}/>
+					<Route path=":documentId" element={<SignedPage/>}/>
+				</Route>
 			</Route>
 			<Route path="*" element={<Navigate to="/home" replace/>}/>
 		</Routes>

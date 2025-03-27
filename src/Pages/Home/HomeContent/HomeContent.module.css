@@ -31,18 +31,6 @@
 	text-align: left;
 }
 
-.tagline em {
-}
-
-.tagline em::after {
-	/*content: "";*/
-	/*display: block;*/
-	/*width: 100%;*/
-	/*height: 0.5rem;*/
-	/*background-color: var(--primary-color);*/
-	/*margin-top: 1rem;*/
-}
-
 .heroBackground {
 	position: absolute;
 	top: 0;
@@ -75,4 +63,24 @@
 	height: 100dvh;
 	object-fit: cover;
 	pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+	.heroSection {
+		padding: 0;
+	}
+
+	.heroDocument {
+		padding: 1cm;
+	}
+
+	.tagline {
+		font-size: 3.2rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.tagline {
+		font-size: 2.4rem;
+	}
 }

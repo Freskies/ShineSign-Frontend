@@ -66,15 +66,53 @@
 	gap: 7.2rem;
 }
 
-.documentSection {
-}
-
 .fieldset {
 	& legend {
 		margin-left: 2rem;
 		padding: 0 0.8rem;
 	}
 }
+
+/* MODAL */
+
+.modalTitle {
+	font-size: 2.4rem;
+	width: 90%;
+	margin-bottom: 2.4rem;
+}
+
+.formCreateDocument {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+}
+
+.formCreateDocument input {
+	padding: 1rem;
+	border: 1px solid var(--light-color-shade);
+	border-radius: 0.4rem;
+	font-family: inherit;
+
+	&:focus {
+		outline: none;
+		border-color: var(--dark-color);
+	}
+}
+
+.formCreateDocument button {
+	padding: 1rem;
+	border: none;
+	border-radius: 0.4rem;
+	background-color: var(--light-color);
+	cursor: pointer;
+	font-family: inherit;
+	font-weight: 500;
+}
+
+.formCreateDocument button:hover {
+	background-color: var(--light-color-shade);
+}
+
 
 /* QUERIES */
 
@@ -94,6 +132,10 @@
 	.add {
 		padding: 0.8rem;
 		transform: scale(0.8);
+	}
+
+	.modalTitle {
+		font-size: 2rem;
 	}
 }
 
@@ -116,5 +158,9 @@
 	.main {
 		padding: 1.6rem 1.2rem;
 		gap: 4.8rem;
+	}
+
+	.modalTitle {
+		font-size: 1.8rem;
 	}
 }

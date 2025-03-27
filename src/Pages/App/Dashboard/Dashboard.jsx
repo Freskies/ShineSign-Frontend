@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../../../Components/Spinner/Spinner.jsx";
 import { IconAdd, IconLogout } from "./DashboardIcons.jsx";
 import Modal from "../../../Components/Modal/Modal.jsx";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SsDocumentList from "../../../Components/SSDocuments/SSDocumentList.jsx";
+import { useModal } from "../../../Hooks/useModal.js";
 
 export default function Dashboard () {
 	const navigate = useNavigate();
@@ -27,14 +28,12 @@ export default function Dashboard () {
 		createDocument,
 	} = useCreateDocument(token);
 
-	const [isOpenModal, setIsOpenModal] = useState(false);
+	const inputRef = useRef(null);
+	const { isOpen: isOpenModal, open: openModal, close: closeModal } = useModal();
 
-	function openModal () {
-		setIsOpenModal(true);
-	}
-
-	function handleClose () {
-		setIsOpenModal(false);
+	function handleOpenModal () {
+		openModal();
+		setTimeout(() => inputRef.current.focus(), 0);
 	}
 
 	const groupedDocuments = ssDocuments ?
@@ -43,7 +42,8 @@ export default function Dashboard () {
 	const publicDocuments = groupedDocuments?.public ?? [];
 	const privateDocuments = groupedDocuments?.private ?? [];
 
-	async function handleCreateDocument () {
+	async function handleCreateDocument (e) {
+		e.preventDefault();
 		const createdDocument = await createDocument(newDocumentTitle);
 		navigate(createdDocument.id, { replace: true });
 	}
@@ -57,6 +57,8 @@ export default function Dashboard () {
 		navigate("/home", { replace: true });
 	}
 
+	const isTitleValid = newDocumentTitle.length > 0;
+
 	return <div className={styles.dashboard}>
 		<aside className={styles.sideActions}>
 			{/*<Link to={"/me"} className={styles.account}>fdf</Link>*/}
@@ -67,7 +69,7 @@ export default function Dashboard () {
 		<div>
 			<header className={styles.header}>
 				<h1 className={styles.title}>My Documents</h1>
-				<button className={styles.add} onClick={openModal} title="create new document">
+				<button className={styles.add} onClick={handleOpenModal} title="create new document">
 					<IconAdd/>
 				</button>
 			</header>
@@ -93,10 +95,18 @@ export default function Dashboard () {
 				}
 			</main>
 		</div>
-		<Modal isOpen={isOpenModal} onClose={handleClose}>
-			<h2>Modal</h2>
-			<input type="text" value={newDocumentTitle} onChange={e => setNewDocumentTitle(e.target.value)}/>
-			<button onClick={handleCreateDocument}>CREATE</button>
+		<Modal isOpen={isOpenModal} onClose={closeModal}>
+			<h2 className={styles.modalTitle}>Create new document</h2>
+			<form onSubmit={handleCreateDocument} className={styles.formCreateDocument}>
+				<input
+					type="text"
+					placeholder="Document title"
+					value={newDocumentTitle}
+					onChange={e => setNewDocumentTitle(e.target.value)}
+					ref={inputRef}
+				/>
+				<button type="submit" disabled={!isTitleValid}>CREATE</button>
+			</form>
 		</Modal>
 	</div>;
 };

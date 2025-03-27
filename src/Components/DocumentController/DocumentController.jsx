@@ -1,13 +1,16 @@
 import styles from "./DocumentController.module.css";
 import { useDocument } from "../../Contexts/DocumentContext.jsx";
 import { useNavigate } from "react-router-dom";
+import Modal from "../Modal/Modal.jsx";
+import { useModal } from "../../Hooks/useModal.js";
 
 export default function DocumentController () {
 	const navigate = useNavigate();
 	const { handleSaveDocument: onSaveDocument } = useDocument();
+	const { isOpen: isOpenModal, open: openModal, close: closeModal } = useModal();
 
 	return <div className={styles.documentController}>
-		<DocumentControl title="Settings">
+		<DocumentControl title="Settings" onClick={openModal}>
 			<Settings/>
 		</DocumentControl>
 		<DocumentControl title="Save" onClick={onSaveDocument}>
@@ -16,6 +19,10 @@ export default function DocumentController () {
 		<DocumentControl title="Exit" onClick={() => navigate("..")}>
 			<Exit/>
 		</DocumentControl>
+		<Modal isOpen={isOpenModal} onClose={closeModal}>
+			<h2>Settings</h2>
+			<p>Settings content</p>
+		</Modal>
 	</div>;
 };
 

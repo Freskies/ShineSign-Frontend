@@ -8,6 +8,7 @@ export const getIsValidTokenUrl = username => `${USER_URL}/${username}/isValidTo
 
 export const DASHBOARD_URL = `${BASE_URL}/dashboard`;
 export const ALL_DOCUMENTS_URL = `${DASHBOARD_URL}/documents`;
+export const allSignedDocumentsUrl = documentId => `${DASHBOARD_URL}/${documentId}`;
 
 export const EDITOR_URL = `${BASE_URL}/editor/document`;
 export const CREATE_DOCUMENT_URL = `${EDITOR_URL}`;
@@ -19,3 +20,4 @@ export const deleteImageUrl = (documentId, imageId) => `${EDITOR_URL}/${document
 export const getAllImages = documentId => `${EDITOR_URL}/${documentId}/allImages`;
 
 export const fillOutUrl = documentId => `${BASE_URL}/fillOut/${documentId}`;
+export const fillOutSubmitUrl = (documentId, email) => `${BASE_URL}/fillOut/${documentId}/${email}`;

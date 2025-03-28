@@ -1,12 +1,13 @@
-# React + Vite
+# ShineSing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ShineSign is a webapp designed to help
+amateur sports associations (a.s.d. in italy)
+to manage the paperwork of their activities.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+It's common for a.s.d. to not have a own place,
+and to use a shared place (like a gym) to host their activities.
+In those cases, the paperwork is usually managed by the
+single person that is in charge of the activity.
+ShineSign is designed to help that person, removing the need
+of real paper documents and creating a central place to, create,
+share and sign documents.

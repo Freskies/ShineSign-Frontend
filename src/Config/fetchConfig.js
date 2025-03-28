@@ -20,4 +20,4 @@ export const deleteImageUrl = (documentId, imageId) => `${EDITOR_URL}/${document
 export const getAllImages = documentId => `${EDITOR_URL}/${documentId}/allImages`;
 
 export const fillOutUrl = documentId => `${BASE_URL}/fillOut/${documentId}`;
-export const fillOutSubmitUrl = (documentId, email) => `${BASE_URL}/fillOut/${documentId}/${email}`;
+export const fillOutSubmitUrl = documentId => `${BASE_URL}/fillOut/${documentId}`;

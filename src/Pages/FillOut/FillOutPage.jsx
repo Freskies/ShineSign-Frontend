@@ -6,11 +6,20 @@ import Spinner from "../../Components/Spinner/Spinner.jsx";
 import { generatePDF } from "../../Config/fillOutHelper.js";
 
 export default function FillOutPage () {
-	const { isLoading, error, isSuccess, pagesRef } = useFillOut();
+	const {
+		isLoading, error, isSuccess,
+		pagesRef,
+		isSubmitting, submitError, isSubmitSuccess, submitDocument
+	} = useFillOut();
+
+	console.log("LOADING: ", isSubmitting, " ERROR: ", submitError, " SUCCESS: ", isSubmitSuccess);
 
 	function handleSubmit () {
 		console.log(pagesRef);
-		generatePDF(pagesRef).then(() => null);
+		generatePDF(pagesRef).then((pdf) => {
+			console.log(pdf);
+			submitDocument(pdf)
+		});
 	}
 
 	return <main className={styles.fillOutContainer}>

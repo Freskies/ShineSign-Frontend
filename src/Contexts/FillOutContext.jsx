@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDocumentToFillOut } from "../Hooks/requests/useDocumentToFillOut.js";
+import { useSubmitSignedDocument } from "../Hooks/requests/useSubmitSignedDocument.js";
 
 const FillOutContext = createContext(null);
 
@@ -26,6 +27,13 @@ export function FillOutProvider ({ children }) {
 
 	const pagesRef = useRef({});
 
+	const {
+		isLoading: isSubmitting,
+		error: submitError,
+		isSuccess: isSubmitSuccess,
+		submitDocument,
+	} = useSubmitSignedDocument(documentId, "test@example.com");
+
 	const [fillOutDocument, setFillOutDocument] = useState(null);
 	const isSuccess = !!fillOutDocument;
 	const pages = orderPages(fillOutDocument?.pages);
@@ -46,6 +54,10 @@ export function FillOutProvider ({ children }) {
 		error,
 		isSuccess,
 		pagesRef,
+		isSubmitting,
+		submitError,
+		isSubmitSuccess,
+		submitDocument
 	};
 
 	return <FillOutContext.Provider value={value}>

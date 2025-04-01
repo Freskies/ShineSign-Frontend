@@ -1,7 +1,7 @@
 import styles from "./Root.module.css";
 
 export default function Root ({ children, style }) {
-	return <div className={styles.page} style={style}>
+	return <form className={styles.page} style={style}>
 		{children}
-	</div>;
+	</form>;
 };

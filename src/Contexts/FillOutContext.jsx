@@ -32,7 +32,7 @@ export function FillOutProvider ({ children }) {
 		error: submitError,
 		isSuccess: isSubmitSuccess,
 		submitDocument,
-	} = useSubmitSignedDocument(documentId, "test@example.com");
+	} = useSubmitSignedDocument(documentId);
 
 	const [fillOutDocument, setFillOutDocument] = useState(null);
 	const isSuccess = !!fillOutDocument;

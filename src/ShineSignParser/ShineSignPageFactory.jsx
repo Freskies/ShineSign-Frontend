@@ -3,6 +3,7 @@ import React from "react";
 import Root from "./SS-Elements/Root/Root.jsx";
 import Paragraph from "./SS-Elements/Paragraph/Paragraph.jsx";
 import Field from "./SS-Elements/Field/Field.jsx";
+import SignBox from "./SS-Elements/Signbox/SignBox.jsx";
 
 // loop the fiber tree and return the corresponding JSX for each node
 export function fromFiberTree (fiberNode) {
@@ -25,6 +26,8 @@ function getElementByType (type) {
 			return Paragraph;
 		case "<field/>":
 			return Field;
+		case "<signbox/>":
+			return SignBox;
 		case "text":
 			return null;
 		default:

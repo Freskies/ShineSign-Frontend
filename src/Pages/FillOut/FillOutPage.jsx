@@ -12,13 +12,10 @@ export default function FillOutPage () {
 		isSubmitting, submitError, isSubmitSuccess, submitDocument
 	} = useFillOut();
 
-	console.log("LOADING: ", isSubmitting, " ERROR: ", submitError, " SUCCESS: ", isSubmitSuccess);
-
 	function handleSubmit () {
-		console.log(pagesRef);
 		generatePDF(pagesRef).then((pdf) => {
 			console.log(pdf);
-			submitDocument(pdf)
+			submitDocument("test@example.com")
 		});
 	}
 

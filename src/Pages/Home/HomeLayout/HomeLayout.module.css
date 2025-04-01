@@ -5,12 +5,11 @@
 .layout > nav {
 	position: fixed;
 	top: 0;
-	width: 100%;
+	width: 100dvw;
 	height: var(--nav-height);
 }
 
 .layout > main {
-	/*padding-top: var(--nav-height);*/
 	height: 100dvh;
 	width: 100%;
 }

@@ -1,4 +1,5 @@
 .field {
 	pointer-events: auto;
 	cursor: pointer;
+	border: none;
 }

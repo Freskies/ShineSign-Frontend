@@ -4,21 +4,41 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal.jsx";
 import { useBinarySwitch } from "../../Hooks/useBinarySwitch.js";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
+import { useEffect } from "react";
 
 export default function DocumentController () {
 	const navigate = useNavigate();
 	const { isOn: isOpenModal, setOn: openModal, setOff: closeModal } = useBinarySwitch();
 	const {
+		localDocument,
 		handleSaveDocument: onSaveDocument,
 		isPublic,
 		setVisibility,
 	} = useDocument();
 
+	useEffect(() => {
+		function handleKeyPress (e) {
+			if (e.ctrlKey && e.key === "s") {
+				e.preventDefault();
+				onSaveDocument();
+			}
+		}
+
+		window.addEventListener("keydown", handleKeyPress);
+		return () => window.removeEventListener("keydown", handleKeyPress);
+	}, [onSaveDocument]);
+
+	const isSaved = !localDocument;
+
 	return <div className={styles.documentController}>
 		<DocumentControl title="Settings" onClick={openModal}>
 			<Settings/>
 		</DocumentControl>
-		<DocumentControl title="Save" onClick={onSaveDocument}>
+		<DocumentControl
+			title="Save"
+			onClick={onSaveDocument}
+			className={isSaved ? "" : styles.notSaved}
+		>
 			<Save/>
 		</DocumentControl>
 		<DocumentControl title="Exit" onClick={() => navigate("..")}>
@@ -34,9 +54,9 @@ export default function DocumentController () {
 	</div>;
 };
 
-function DocumentControl ({ children, title, onClick }) {
+function DocumentControl ({ children, title, onClick, className = "" }) {
 	return <button
-		className={styles.documentControl}
+		className={`${styles.documentControl} ${className}`}
 		onClick={onClick}
 		title={title}
 	>

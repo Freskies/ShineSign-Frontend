@@ -7,7 +7,7 @@ const DOC_HEIGHT = 297;
 export async function generatePDF (pagesRef) {
 	const pageList = Object.values(pagesRef.current);
 	const canvasList = await getCanvasList(pageList);
-	const pdf = new jsPDF("p", "mm", "a4");
+	const pdf = new jsPDF("p", "mm", "a4", false);
 	for (let i = 0; i < canvasList.length; i++) {
 		if (i !== 0) pdf.addPage();
 		await pdf.addImage(canvasList[i], "PNG", 0, 0, DOC_WIDTH, DOC_HEIGHT);

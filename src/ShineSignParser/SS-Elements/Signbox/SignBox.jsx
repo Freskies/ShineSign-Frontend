@@ -2,9 +2,8 @@ import styles from "./SignBox.module.css";
 import SignatureCanvas from "react-signature-canvas";
 import { useRef } from "react";
 
-export default function SignBox ({ style }) {
+export default function SignBox ({ children, style }) {
 	function handleDraw (e) {
-		// e.preventDefault();
 		e.stopPropagation();
 	}
 
@@ -24,5 +23,6 @@ export default function SignBox ({ style }) {
 		>
 			Clear
 		</button>
+		{children}
 	</fieldset>;
 };

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useUser } from "./UserContext.jsx";
 import { useFetchDocument } from "../Hooks/requests/useFetchDocument.js";
@@ -87,14 +87,14 @@ export function DocumentProvider ({ children }) {
 		onDeletePage(currentPage.id);
 	}
 
-	async function handleSaveDocument () {
+	const handleSaveDocument = useCallback(async () => {
 		try {
 			await saveDocument(localDocument);
 			setLocalDocument(null);
 		} catch (error) {
 			console.error("Failed to save document", error);
 		}
-	}
+	}, [localDocument, saveDocument, setLocalDocument]);
 
 	const value = {
 		pageRef,

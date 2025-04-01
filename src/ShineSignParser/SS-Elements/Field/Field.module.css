@@ -1,5 +1,30 @@
-.field {
+.inputWrapper {
+	display: inline-block;
+	position: relative;
+}
+
+.span {
+	position: absolute;
+	white-space: nowrap;
+	opacity: 0;
+	font-size: inherit;
+	width: min-content;
+}
+
+.field, .field::placeholder {
+	font-size: inherit;
+	font-family: inherit;
 	pointer-events: auto;
 	cursor: pointer;
 	border: none;
+	color: #C36F09;
+	font-weight: 500;
+}
+
+.field::placeholder {
+	font-weight: 600;
+}
+
+.field:focus {
+	outline: none;
 }

@@ -1,0 +1,11 @@
+.label {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+.label span {
+	transform: translateY(1px);
+}

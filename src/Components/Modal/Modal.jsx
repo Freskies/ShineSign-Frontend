@@ -10,6 +10,7 @@ export default function Modal ({ isOpen, onClose, children }) {
 	}, [isOpen]);
 
 	function handleClickOutside (e) {
+		// TODO scroll
 		if (e.target === modalRef.current) onClose();
 	}
 

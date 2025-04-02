@@ -7,7 +7,21 @@
 }
 
 .submitButton {
+	font-family: inherit;
 	position: fixed;
 	top: 2.4rem;
 	right: 2.4rem;
+	padding: 1rem 4rem;
+	border-radius: 15px;
+	background-color: var(--primary-color);
+	font-weight: 600;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border: 1px solid var(--dark-color);
+	cursor: pointer;
+}
+
+.link {
+	text-decoration: underline;
+	color: var(--dark-color);
+	font-weight: 600;
 }

@@ -11,6 +11,7 @@ export default function DocumentController () {
 	const { isOn: isOpenModal, setOn: openModal, setOff: closeModal } = useBinarySwitch();
 	const {
 		localDocument,
+		documentId,
 		handleSaveDocument: onSaveDocument,
 		isPublic,
 		setVisibility,
@@ -28,7 +29,12 @@ export default function DocumentController () {
 		return () => window.removeEventListener("keydown", handleKeyPress);
 	}, [onSaveDocument]);
 
+	const link = `${window.location.origin}/sign/${documentId}`;
 	const isSaved = !localDocument;
+
+	function handleClickLink () {
+		navigator.clipboard.writeText(link).then(() => null);
+	}
 
 	return <div className={styles.documentController}>
 		<DocumentControl title="Settings" onClick={openModal}>
@@ -49,6 +55,10 @@ export default function DocumentController () {
 			<label className={styles.property}>
 				<span>Visibility:</span>
 				<ToggleSwitch isOn={isPublic} onToggle={() => setVisibility(!isPublic)}/>
+			</label>
+			<label className={styles.property}>
+				<span>Link:</span>
+				<span className={styles.link} onClick={handleClickLink}>{link}</span>
 			</label>
 		</Modal>
 	</div>;

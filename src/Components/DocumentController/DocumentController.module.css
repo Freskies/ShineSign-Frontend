@@ -55,3 +55,10 @@
 	align-items: center;
 	gap: 1.2rem;
 }
+
+.link {
+	font-size: 80%;
+	background-color: #E0E0E088;
+	padding: 6px 12px;
+	border-radius: 8px;
+}
